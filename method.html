@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>方法 · 黄启康作品集</title>
+  <meta name="description" content="我怎么管理数字口径：实测、估算、推算、待核实分别意味着什么，假设写在哪里，数字冲突时怎么选；我怎么定规则、让 AI 编码代理实现、再审查合并；以及我怎么进入一个完全陌生的领域。">
+  <meta name="theme-color" content="#05080E">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>(function(){document.documentElement.classList.add('js');window.setTimeout(function(){if(!window.PORTFOLIO_READY){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('is-in');});}},2500);})();</script>
+</head>
+<body>
+  <div class="site-stars" aria-hidden="true"></div>
+  <a class="skip" href="#main">跳到正文</a>
+
+  <div class="notice">
+    <div class="wrap notice__inner">
+      <span>草稿 v0.1 · 数字口径标记为</span>
+      <span class="mark mark--measured" title="实测 · 有日志、后台导出或可复算的记录">实测</span>
+      <span>/</span>
+      <span class="mark mark--estimated" title="估算 · 基数可查、假设写明的推导值">估算</span>
+      <span>/</span>
+      <span class="mark mark--inferred" title="推算 · 由已有口径推导，未逐项核对">推算</span>
+      <span>/</span>
+      <span class="mark mark--pending" title="待核实 · 来源互斥或缺失，暂不作为结论">待核实</span>
+      <span>·</span>
+      <a class="notice__link" href="portfolio.html#caliber-table">点此了解</a>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="主导航">
+    <div class="wrap nav__inner">
+      <a class="nav__brand" href="index.html"><span class="nav__brand-mark" aria-hidden="true"></span>黄启康 · 作品集 2026</a>
+      <div class="nav__links">
+        <a class="nav__link" href="index.html">首页</a>
+        <a class="nav__link" href="portfolio.html#work">作品</a>
+        <a class="nav__link" href="method.html" aria-current="page">方法</a>
+        <a class="nav__link" href="resume.html">简历</a>
+        <a class="nav__link" href="portfolio.html#about">关于</a>
+        <a class="nav__link" href="portfolio.html#contact">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="crumbs-bar">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="面包屑">
+        <a href="index.html">入口</a>
+        <span class="crumbs__sep" aria-hidden="true">›</span>
+        <a href="portfolio.html#work">作品集</a>
+        <span class="crumbs__sep" aria-hidden="true">›</span>
+        <span aria-current="page">方法</span>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main">
+    <header class="case-hero case-hero--split case-hero--method">
+      <div class="wrap case-hero__grid">
+        <div class="case-hero__main">
+          <p class="case-hero__eyebrow">
+            <span class="case-hero__no">Method / 03</span>
+            <span class="case-hero__kind">Notes on numbers &amp; craft</span>
+          </p>
+
+          <h1 class="case-hero__title">数字怎么来的，<br>代码怎么写出来的<span class="dot">。</span></h1>
+
+          <p class="case-hero__lede">三件容易被含糊过去的事：一个数字的口径、一段不是自己逐行写的代码，以及一个完全陌生的领域是怎么进去的。我把处理方式写在这里，方便你判断该信到什么程度。</p>
+
+          <ul class="case-hero__stats">
+            <li class="case-hero__stat">
+              <span class="case-hero__stat-value">478<span class="mark mark--measured" title="实测 · 每条都能在评分记录里查到，对外只用这个数">实测</span></span>
+              <span class="case-hero__stat-label">有完整评分</span>
+            </li>
+            <li class="case-hero__stat">
+              <span class="case-hero__stat-value">734<span class="mark mark--pending" title="待核实 · 含转接产生的重复行与测试留言，不能直接当会话数">待核实</span></span>
+              <span class="case-hero__stat-label">系统原始行</span>
+            </li>
+            <li class="case-hero__stat">
+              <span class="case-hero__stat-value">577<span class="mark mark--pending" title="待核实 · 去重规则只在周报里出现过一次，无法复算">待核实</span></span>
+              <span class="case-hero__stat-label">周报去重口径</span>
+            </li>
+          </ul>
+        </div>
+
+        <aside class="case-hero__side">
+          <dl class="case-hero__meta">
+            <div><dt>类型</dt><dd>方法笔记</dd></div>
+            <div><dt>主题</dt><dd>口径 / 协作 / 领域</dd></div>
+            <div><dt>更新</dt><dd>2026.11</dd></div>
+            <div><dt>关联</dt><dd>6 个项目</dd></div>
+          </dl>
+
+          <p class="case-hero__alias"><span>读法</span>先看标记，再看数字；假设写在数字旁边，而不是藏在脚注里。</p>
+        </aside>
+      </div>
+    </header>
+
+    <!-- 01 口径 -->
+    <section class="section" id="caliber" aria-labelledby="caliber-h">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="sec-label"><span class="sec-label__no">01 /</span>Caliber</p>
+          <h2 class="sec-title" id="caliber-h">我怎么管理口径。</h2>
+          <p class="sec-note">标记说明的是来源强度，不是数字大小。</p>
+        </div>
+
+        <div class="m-body">
+          <aside class="m-rail" aria-label="本节要点">
+            <div class="m-rail__inner">
+              <strong>01 / 口径</strong>
+              <span>为什么标</span>
+              <span>假设写在哪</span>
+              <span>冲突怎么选</span>
+            </div>
+          </aside>
+
+          <div class="m-main">
+            <h3>一、为什么每个数字都要标「实测」还是「估算」</h3>
+            <p>数字一旦离开出处，就会被当成承诺。面试里说「1,708 场会话」，对方默认你已经核对过；写在作品集里，这个默认还要更强——读者不会追问，他直接记住。</p>
+            <p>所以我不给一个笼统的精确数字，而是给数字加一个来源强度。<strong>实测</strong>：有日志、后台导出或可复算的记录，别人拿同一份数据能算出同一个值。<strong>估算</strong>：基数可查，但我加了假设。<strong>推算</strong>：从别的口径推过来，没有逐项核对。<strong>待核实</strong>：材料互相打架，或者缺关键一环，我暂时不把它当结论。</p>
+            <p>标记用的是形态，不是颜色：实心、实线框、虚线框、浅灰底。整站只有一个强调色，红黄绿那套会让页面看起来像在报警，而这些数字大部分只是「强度不同」，不是「好坏」。</p>
+
+            <h3>二、估算的假设写在哪里</h3>
+            <p>每个估算，我都在项目同目录的「口径与待确认清单」里写三行：基准数、假设、这个假设被推翻时会怎样。页面上那个 9px 的标记只放一句话摘要，完整的推导在清单里。</p>
+            <ol class="steps">
+              <li><strong>基准数</strong>：必须来自已确认的记录，不能是另一个估算。比如「约 70 元月支出」，基数是我自己核对过的最近一个月账单。</li>
+              <li><strong>假设</strong>：用量维持当前水平、不含一次性采购、价格按当前档位不涨价。写成能被别人否定的句子，不写「大概差不多」。</li>
+              <li><strong>失效条件</strong>：用量翻倍，这个数就作废。写清楚哪一步先坏，比写清楚结论更重要。</li>
+            </ol>
+            <p class="m-quiet">为什么敢这么做：一个能被按假设重算的估算，比一个查不到来源的精确数字更可靠。前者最坏的结果是明确地错，后者最坏的结果是一直对得莫名其妙。</p>
+
+            <h3>三、两份材料数字打架时，我怎么处理</h3>
+            <p>真实例子。同一个质检周期，「应质检会话数」在三份材料里是三个互斥的数：<span class="inline-fact">734</span>、<span class="inline-fact">577</span>、<span class="inline-fact">478</span>。差得太多，不可能是四舍五入。</p>
+
+            <figure class="bars">
+              <figcaption class="bars__cap">
+                <span>同一周期的三个互斥值</span>
+                <b>2026.10 · 三份材料</b>
+              </figcaption>
+
+              <div class="bars__row">
+                <span class="bars__label">系统流水行</span>
+                <span class="bars__track"><span class="bars__fill" data-w="100"></span></span>
+                <span class="bars__val">734 <span class="mark mark--pending" title="待核实 · 含转接产生的重复行与测试留言，不能直接当会话数">待核实</span></span>
+              </div>
+
+              <div class="bars__row">
+                <span class="bars__label">去重后会话</span>
+                <span class="bars__track"><span class="bars__fill" data-w="79"></span></span>
+                <span class="bars__val">577 <span class="mark mark--pending" title="待核实 · 去重规则只在周报里出现过一次，无法复算">待核实</span></span>
+              </div>
+
+              <div class="bars__row bars__row--chosen">
+                <span class="bars__label">有完整评分</span>
+                <span class="bars__track"><span class="bars__fill" data-w="65"></span></span>
+                <span class="bars__val">478 <span class="mark mark--measured" title="实测 · 每条都能在评分记录里查到，对外只用这个数">实测</span></span>
+              </div>
+
+              <p class="bars__note">734 是系统导出的原始行数，转接一次就多一行，还混着测试留言；577 是周报里的去重口径，但去重规则只出现过一次，我没法复算；478 是能逐条指到评分记录的会话数。</p>
+            </figure>
+
+            <p>原因不是谁算错了，是分母的定义不同。734 数的是「数据行」，577 数的是「会话」，478 数的是「有结论的会话」。三个都真实，只是回答的不是同一个问题。</p>
+            <p>我的处理：对外只说 <span class="inline-fact">478</span>，标实测，因为别人能按评分记录复算；另外两个标待核实，并写清差异来源。<strong>不取平均</strong>——(734+577+478)/3 在业务上没有任何含义；<strong>不取最大</strong>——734 会让覆盖率看起来多做了一半，那是虚的。</p>
+            <p>选小的那个，通常意味着我要放弃一个更好看的数字。这是刻意的：数字被读者抓包一次，整页都会失去可信度；少报一点，最多是保守。</p>
+
+            <div class="m-quote">口径不是写作技巧，是把「我知道什么」和「我猜什么」分开摆出来的习惯。</div>
+
+            <a class="m-back" href="portfolio.html#caliber">回到首页看完整口径总表 <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 AI 协作 -->
+    <section class="section" id="ai" aria-labelledby="ai-h">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="sec-label"><span class="sec-label__no">02 /</span>Collaboration</p>
+          <h2 class="sec-title" id="ai-h">我怎么和 AI 协作开发。</h2>
+          <p class="sec-note">我负责「什么算对」，它负责「把它写出来」。</p>
+        </div>
+
+        <div class="m-body">
+          <aside class="m-rail" aria-label="本节要点">
+            <div class="m-rail__inner">
+              <strong>02 / 协作</strong>
+              <span>分工</span>
+              <span>踩过的坑</span>
+              <span>三条固定做法</span>
+            </div>
+          </aside>
+
+          <div class="m-main">
+            <h3>一、分工：规则和验收归我，实现归它</h3>
+            <p>我不用 AI 帮我「想产品」，产品定义、规则体系、验收标准由我定；它负责把这些写成能跑的代码。这不是客气话，是分工边界：如果我说不清「什么算对」，它写出来的东西我也不该合并。</p>
+            <ol class="steps">
+              <li><strong>我先写验收</strong>：一段可执行的断言，或者一张验收矩阵——什么输入、什么输出、边界在哪里。写完才让它动手。</li>
+              <li><strong>它写实现</strong>：整块功能、迁移脚本、适配层，都是它写。我不逐行敲原始实现，这是我明确写在项目卡上的边界。</li>
+              <li><strong>我审边界与副作用</strong>：代码审查我只看三件事——错误路径、状态枚举、有没有偷偷改动别的业务；剩下的靠脚本验收。</li>
+              <li><strong>我合并并负责</strong>：出问题不会说「这是 AI 写的」。验收标准是我定的，洞就在我这边。</li>
+            </ol>
+
+            <h3>二、一个真实的坑：AI 静默失效，让合格率被误读</h3>
+            <p>客服质检系统里，AI 评分维度还没启用时，会话本该进入「未评分」。但编码代理写了这样一段聚合：没有任何扣分项的会话，就按「合格」计数。代码不报错、不告警，面板上出现了一个漂亮的 <span class="inline-fact">29.4%</span> 合格率 <span class="mark mark--pending" title="待核实 · 分母混入未评分会话，不作为结论">待核实</span>。</p>
+            <p>它看起来比人工抽检的结果还好一点，差点就被我当成「系统有效」的证据写进周报。</p>
+
+            <div class="compare">
+              <div class="compare__col">
+                <span class="compare__tag">现象</span>
+                <p>面板显示合格率 29.4%，比人工抽检低不少，但趋势「平稳」。没有人报错，没有空值，没有崩溃。</p>
+              </div>
+              <div class="compare__col">
+                <span class="compare__tag">怎么发现的</span>
+                <p>我用已评分的 <span class="inline-fact">478</span> 场手算合格数，和面板对不上；再按应质检的 <span class="inline-fact">1,708</span> 场算，又是另一个数。三个数互相对不上，问题只可能在分母和状态枚举。</p>
+              </div>
+              <div class="compare__col">
+                <span class="compare__tag">原因</span>
+                <p>「未评分」没有被建模成一个状态。缺失被默认值吃掉：没有维度分 → 没有扣分项 → 计为合格。这是一次静默失效，不是 bug 崩溃。</p>
+              </div>
+              <div class="compare__col">
+                <span class="compare__tag">修法</span>
+                <p>新增未评分状态，不进入分母；合格率旁边强制显示「已评分 / 应质检」；验收脚本加断言：已评分 + 未评分 = 应质检。29.4% 降级为待核实，留档写明旧口径。</p>
+              </div>
+            </div>
+
+            <p>修完之后，面板上仍然有 29.4% 这个数，但它旁边多了一行分母说明，和一张「这批数是怎么来的」的清单。我认为这比让它消失更诚实：错误的口径应该被记录，而不是被删掉。</p>
+
+            <h3>三、所以我固定了三件事</h3>
+            <ol class="steps">
+              <li><strong>先写断言，再写实现。</strong>「看起来对」不算验收；能被我手算复现才算。</li>
+              <li><strong>每个数字都能指回一行记录。</strong>指不回去的，降级成待核实，不写进结论。</li>
+              <li><strong>审查只看边界。</strong>正常路径 AI 很少写错，错的多半在空值、并发、状态切换和默认值。</li>
+            </ol>
+
+            <div class="m-quote">AI 的失败很少是崩溃，多数是「给了一个看起来对的数」。所以我的验收标准必须写成能复算的断言，而不是一句「看起来没问题」。</div>
+
+            <a class="m-back" href="portfolio.html#work">回去看这些项目 <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 陌生领域 -->
+    <section class="section" id="domain" aria-labelledby="domain-h">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="sec-label"><span class="sec-label__no">03 /</span>Field</p>
+          <h2 class="sec-title" id="domain-h">我怎么进入一个完全陌生的领域。</h2>
+          <p class="sec-note">先知道它是什么，再在需要的那一刻把它学会。</p>
+        </div>
+
+        <div class="m-body">
+          <aside class="m-rail" aria-label="本节要点">
+            <div class="m-rail__inner">
+              <strong>03 / 领域</strong>
+              <span>跨领域</span>
+              <span>学习方式</span>
+              <span>为什么有效</span>
+            </div>
+          </aside>
+
+          <div class="m-main">
+            <p>我做的项目不在同一个领域里。一个暑假从零跑通「超级个体」的完整经营，做了一年多；这次实习两个月，做出 1 个系统 + 3 个插件；再往前是公益文书、校园分销、电商店铺。领域不同，动作是同一套：先看清旧流程怎么跑，再问它为什么必须这么跑。</p>
+
+            <p>我的学习方式有点反常识：我关注最新的技术发展，但不预先深学。只要求自己知道「它是什么、能做到什么」，记在脑子里，不记在收藏夹里；等真实需求出现，再针对性地深入学。所以我的学习每次都是带着一个具体问题进去的，不是带着一套课程。</p>
+
+            <div class="callout callout--quote">
+              <span class="callout__label">我信这一句</span>
+              <blockquote>
+                <p>带着问题去学习新技能，远比带着技能去解决问题更高效。</p>
+                <p>技能先学、问题后找，学到的东西大概率用不上；问题先来、技能后补，学完当天就能用。</p>
+              </blockquote>
+            </div>
+
+            <p>这套方式在现在的环境里特别有效。所在公司是大厂，但业务侧的 AI 化程度不高，旧流程大量依赖人工重复。这意味着不是没需求，是没人同时懂业务和技术。我能做的正是站在中间：把业务问题翻译成能自动化的流程。</p>
+
+            <p><strong>我不追求把技术学全，我追求在需要的那一刻，把它用对。</strong></p>
+
+            <a class="m-back" href="portfolio.html#work">回去看这些项目 <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="wrap footer__inner">
+      <div class="footer__head">
+        <p class="footer__kicker">04 / Contact</p>
+        <h2 class="footer__title">有事找我，<br>直接说。</h2>
+
+        <div class="footer__contacts">
+          <a class="contact" href="mailto:2856174805@qq.com">
+            <span class="contact__key">邮箱</span>
+            <span class="contact__val">2856174805@qq.com <span class="contact__arrow" aria-hidden="true">↗</span></span>
+          </a>
+          <a class="contact" href="https://github.com/big-niuNiu929" target="_blank" rel="noopener">
+            <span class="contact__key">GitHub</span>
+            <span class="contact__val">github.com/big-niuNiu929 <span class="contact__arrow" aria-hidden="true">↗</span></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>黄启康 · <a href="tel:15976479396">15976479396</a> · <a href="mailto:2856174805@qq.com">2856174805@qq.com</a> · <a href="https://github.com/big-niuNiu929" target="_blank" rel="noopener">github.com/big-niuNiu929</a></span>
+        <span>本站由手写 HTML/CSS 构建，无框架无构建工具 · 数字口径见 <a href="method.html">方法页</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js" defer></script>
+  <script src="assets/space-bg.js" defer></script>
+</body>
+</html>
+
+
+

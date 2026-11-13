@@ -1,0 +1,519 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>价格巡检与三合一平台 · 黄启康作品集</title>
+  <meta name="description" content="价格巡检与三合一平台的完整案例：为什么人工时代不做全量巡检，取价判定怎么重建，AI 兜底为什么一次都没生效，以及 23 分 42 秒背后写了哪些假设。">
+  <meta name="theme-color" content="#05080E">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="site-stars" aria-hidden="true"></div>
+  <a class="skip" href="#main">跳到正文</a>
+
+  <nav class="nav" aria-label="主导航">
+    <div class="wrap nav__inner">
+      <a class="nav__brand" href="../index.html"><span class="nav__brand-mark" aria-hidden="true"></span>黄启康 · 作品集 2026</a>
+      <div class="nav__links">
+        <a class="nav__link" href="../index.html">首页</a>
+        <a class="nav__link" href="../portfolio.html#work" aria-current="page">作品</a>
+        <a class="nav__link" href="../method.html">方法</a>
+        <a class="nav__link" href="../resume.html">简历</a>
+        <a class="nav__link" href="../portfolio.html#about">关于</a>
+        <a class="nav__link" href="../portfolio.html#contact">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="crumbs-bar">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="面包屑">
+        <a href="../index.html">入口</a>
+        <span class="crumbs__sep" aria-hidden="true">›</span>
+        <a href="../portfolio.html#work">作品集</a>
+        <span class="crumbs__sep" aria-hidden="true">›</span>
+        <span aria-current="page">价格巡检与三合一平台</span>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main">
+    <header class="case-hero case-hero--split">
+      <div class="wrap case-hero__grid">
+        <div class="case-hero__main">
+          <p class="case-hero__eyebrow">
+            <span class="case-hero__no">01 / 06</span>
+            <span class="case-hero__kind">Case study</span>
+          </p>
+
+          <h1 class="case-hero__title">价格巡检与三合一平台</h1>
+
+          <p class="case-hero__lede">手动抄完一轮商品页价格要 3 小时<span class="mark mark--estimated" title="估算 · 2 个账号 × 约 140 个 SKU，逐个搜索并核对标准价；本人实操回忆，非掐表">估算</span>；现在点一次按钮，23 分 42 秒<span class="mark mark--measured" title="实测 · 2 个账号 × 约 140 个 SKU，含登录、逐页取价、结果汇总；掐表实测">实测</span>跑完。</p>
+
+          <ul class="case-hero__stats">
+          <li class="case-hero__stat">
+            <span class="case-hero__stat-value">23 分 42 秒<span class="mark mark--measured" title="实测 · 2 个账号 × 约 140 个 SKU，掐表实测">实测</span></span>
+            <span class="case-hero__stat-label">全量单轮</span>
+          </li>
+          <li class="case-hero__stat">
+            <span class="case-hero__stat-value">约 3 小时<span class="mark mark--estimated" title="估算 · 同一流程逐个搜索并核对标准价，本人实操回忆">估算</span></span>
+            <span class="case-hero__stat-label">人工基线</span>
+          </li>
+          <li class="case-hero__stat">
+            <span class="case-hero__stat-value">约 2 小时 36 分<span class="mark mark--inferred" title="推算 · 3h − 23m42s；按每天一轮、每月 22 天，月省约 57 小时">推算</span></span>
+            <span class="case-hero__stat-label">每轮节省</span>
+          </li>
+          </ul>
+        </div>
+
+        <aside class="case-hero__side">
+          <dl class="case-hero__meta">
+            <div><dt>类型</dt><dd>技术</dd></div>
+            <div><dt>场景</dt><dd>实习</dd></div>
+            <div><dt>时间</dt><dd>2026.11</dd></div>
+            <div><dt>状态</dt><dd>L3 巡检模块 / L2 平台层</dd></div>
+          </dl>
+
+          <p class="case-hero__alias"><span>模块关系</span>同一平台下的三个业务模块：价格巡检 / 市占率 / 竞品价格雷达</p>
+        </aside>
+      </div>
+    </header>
+
+    <section class="quickfacts" aria-labelledby="quickfacts-title">
+      <div class="wrap">
+        <div class="quickfacts__head">
+          <span id="quickfacts-title">30 秒速读</span>
+          <span>3 件事</span>
+        </div>
+
+        <ul class="quickfacts__grid quickfacts__grid--3">
+
+          <li>
+            <p class="quickfacts__label">我的角色</p>
+            <p class="quickfacts__text">需求方、口径拍板方、验收方。取价判定和验收标准由我定，实现由 AI 编码代理执行。</p>
+          </li>
+
+          <li>
+            <p class="quickfacts__label">我没做什么</p>
+            <p class="quickfacts__text">没写全部实现，没做生产部署，没碰真实价格与店铺数据。</p>
+          </li>
+
+          <li class="quickfacts__status">
+            <p class="quickfacts__label">当前状态</p>
+            <strong>L3 巡检模块 / L2 平台层</strong>
+            <span>巡检真有人每天点一次；三合一只是工程上成立，没在真站批量跑过。</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <details class="case-toc case-toc--mobile">
+        <summary>本页目录<span class="case-toc__hint" data-hint>展开 8 节目录</span></summary>
+        <ol>
+          <li><a href="#problem">问题</a></li>
+          <li><a href="#constraints">约束</a></li>
+          <li><a href="#role">我的角色</a></li>
+          <li><a href="#approach">方案与取舍</a></li>
+          <li><a href="#hardest">最难的一个点</a></li>
+          <li><a href="#results">结果</a></li>
+          <li><a href="#evidence">证据</a></li>
+          <li><a href="#mistakes">我做错了什么 / 如果重做</a></li>
+        </ol>
+      </details>
+    </div>
+
+    <div class="wrap case-body">
+      <aside class="case-body__rail">
+        <nav class="case-toc case-toc--rail" aria-label="本页目录">
+          <p class="case-toc__title">本页目录</p>
+          <ol>
+          <li><a href="#problem">问题</a></li>
+          <li><a href="#constraints">约束</a></li>
+          <li><a href="#role">我的角色</a></li>
+          <li><a href="#approach">方案与取舍</a></li>
+          <li><a href="#hardest">最难的一个点</a></li>
+          <li><a href="#results">结果</a></li>
+          <li><a href="#evidence">证据</a></li>
+          <li><a href="#mistakes">我做错了什么 / 如果重做</a></li>
+        </ol>
+        </nav>
+      </aside>
+
+      <article class="case-main">
+        <!-- 01 问题 -->
+        <section class="case-sec" id="problem" aria-labelledby="problem-title">
+          <div class="case-sec__head">
+            <span class="case-sec__no" aria-hidden="true">01 /</span>
+            <h2 class="case-sec__title" id="problem-title">问题</h2>
+          </div>
+
+          <div class="prose">
+            <p>这件事的起点不是技术，是每天下午的一段重复劳动。运营要核对一批商品有没有破价：打开商品页，找到真正在卖的那个价格，和标准价表比，把异常的记下来。一个人一天能核的数量有限，所以「全量」从来不是默认选项。</p>
+
+            <div class="callout callout--quote">
+              <span class="callout__label">委托人复盘原话 · 未改意思</span>
+              <blockquote>
+                <p>人工时代根本不做全量巡检，只看主力型号。</p>
+                <p>连电商平台自己的采销用的也是笨办法——把要监控的型号放进购物车，一个一个看。</p>
+                <p>原来的频率是每天一次，本质上是因为人力和效率有限。</p>
+              </blockquote>
+            </div>
+
+            <p>这三句话把需求说清楚了：不是「想做个工具」，而是「知道该看全部，但人力和效率只允许看一部分」。所以工具要解决的不是把 <span class="mark mark--estimated" title="估算 · 2 个账号 × 约 140 个 SKU，逐个搜索并核对标准价；本人实操回忆，非掐表">约 3 小时</span> 压短一点，而是让「全量」第一次变得可行。</p>
+
+            <p>更麻烦的是价格本身的可得性：开放接口只覆盖标价，会员到手价只存在于登录后的页面上，而页面还会把价格拆开、延迟出现、按条件隐藏。也就是说，真正决定竞争判断的那一档价格，没有任何接口能直接给你。</p>
+
+            <p>平台层来自同一次内部编程马拉松。三个模块各自能用，但入口、取价、结果口径不一致；合到一起不是加一个首页，而是逼着三套代码回答同一个问题——这个页面上的价格，到底是哪一个。</p>
+          </div>
+        </section>
+
+        <!-- 02 约束 -->
+        <section class="case-sec" id="constraints" aria-labelledby="constraints-title">
+          <div class="case-sec__head">
+            <span class="case-sec__no" aria-hidden="true">02 /</span>
+            <h2 class="case-sec__title" id="constraints-title">约束</h2>
+          </div>
+
+          <div class="prose">
+            <p>能做成什么样，先被四个条件框住。</p>
+
+            <div class="compare">
+              <div class="compare__col">
+                <span class="compare__tag">时间</span>
+                <p>11-02 到 11-10，一共 9 天<span class="mark mark--measured" title="实测 · 按 2026-11-02 至 2026-11-10 的版本记录计算">实测</span>。巡检反复改了几版，市占率和竞品价格雷达各自迭代，最后一天才把三合一收口。这 9 天不是排期表，是版本记录里确实发生的 9 天。</p>
+              </div>
+
+              <div class="compare__col">
+                <span class="compare__tag">人力</span>
+                <p>一个人，加一个 AI 编码代理。我负责需求、口径和验收，实现由代理执行。这决定了取舍：能写成脚本的验收先写，能靠人点一次的流程就不做服务器。</p>
+              </div>
+
+              <div class="compare__col">
+                <span class="compare__tag">数据</span>
+                <p>不能碰真实价格与店铺。开发期的页面、价格、账号全部用构造数据；真实采集快照只用于归因，不外贴。这条约束让「在真站跑通」变成了交付时也没补上的空缺。</p>
+              </div>
+
+              <div class="compare__col">
+                <span class="compare__tag">环境</span>
+                <p>浏览器扩展 + 本机取价桥，没有服务器。扩展在页面上取价，桥在本机做转发和落库；换机器、断网、权限变更都会影响它。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 我的角色 -->
+        <section class="case-sec" id="role" aria-labelledby="role-title">
+          <div class="case-sec__head">
+            <span class="case-sec__no" aria-hidden="true">03 /</span>
+            <h2 class="case-sec__title" id="role-title">我的角色</h2>
+          </div>
+
+          <div class="prose">
+            <h3>我做了什么</h3>
+            <p>需求定义、口径拍板、验收、跨模块的取价统一。具体是四件事：推翻旧版「标签定位法」并重建取价判定；删掉「取最接近阈值就重采」的复采逻辑；设计「宁可空置也不猜」的数据链路；给匹配库划写入权限——脚本绝不自动写库。</p>
+            <p>再往外一层，我组织了四套 headless 自动化验收，和十五个构造商品页的三引擎一致性比对。验收不是我口头说「没问题」，是脚本跑完输出通过数。</p>
+
+            <h3>我没做什么</h3>
+            <p>实现由 AI 编码代理执行，我是需求方、口径拍板方与验收方。这句话必须写清楚，否则「我做了这个系统」很容易被理解成「我逐行写了这个系统」。</p>
+            <p>我也没做生产部署：数据只存本机，不上服务器。我还没有把定时器做进系统——系统没有内置定时器，全部靠人点按钮。所以它不是定时任务，是人想起来就点一次。</p>
+            <p>另外，平台层没有在真实商品页上批量验证过。它通过了构造页面的验收，但这和「在真站跑通」是两件事，我不混着说。</p>
+          </div>
+        </section>
+
+        <!-- 04 方案与取舍 -->
+        <section class="case-sec" id="approach" aria-labelledby="approach-title">
+          <div class="case-sec__head">
+            <span class="case-sec__no" aria-hidden="true">04 /</span>
+            <h2 class="case-sec__title" id="approach-title">方案与取舍</h2>
+          </div>
+
+          <div class="prose">
+            <p>最贵的错误发生在取价判定上，不在功能多少。</p>
+
+            <p>旧逻辑很朴素：给所有含「到手价」的容器加分，谁分高取谁。问题是商品页上不止一个「到手价」——真价格、比价卡片、关联购买、推荐位都可能命中。真价格和比价卡片最后同分（31 分）<span class="mark mark--measured" title="实测 · 2026-11-04 误读归因：真价格容器与比价卡片同为 31 分，稳定排序按页面位置选中后者">实测</span>，稳定排序下就成了谁在页面里靠前谁中选。结果 76% 的会员价取自别的商品<span class="mark mark--measured" title="实测 · 2026-11-04 一次批量巡检的会员价归因：82 条里 62 条取自别的商品">实测</span>。</p>
+
+            <p>修复不是把阈值往上调一格。那只是把错误挪个位置。我把判定拆成四步：</p>
+
+            <ol class="steps">
+              <li>只取首屏内可见、字号最大的主价格区。</li>
+              <li>正则排除比价卡片与关联购买区块。</li>
+              <li>拆开的数字先拼回完整价，再解析。</li>
+              <li>拒绝 1–2 位小数碎片——它们通常是折扣、分期或凑单提示。</li>
+            </ol>
+
+            <p>这四步的顺序有讲究：先缩范围，再排除干扰，再修复数字，最后拒绝碎片。任何一步反过来，都可能把别的商品的价格带进来。</p>
+
+            <div class="callout">
+              <span class="callout__label">我放弃了什么</span>
+              <p>删掉了「取最接近阈值的价格」的复采逻辑。原逻辑是差价超过一个数就重采几次、挑离阈值最近的那个。那等于让程序猜一个「看起来合理」的价格，把错误伪装成正常。</p>
+              <p>删掉它，意味着放弃「数字总是有的」这个体面，接受「读不到就空着」。这比新增任何功能都难，因为它让结果页出现空缺；但空着是诚实的，猜一个数不是。</p>
+            </div>
+
+            <p>同一套原则也用在市占率上：读不到就空着，不拿商品名去推价格。覆盖率因此变低，这条我放在最后一节说。</p>
+          </div>
+        </section>
+
+        <!-- 05 最难的一个点 -->
+        <section class="case-sec" id="hardest" aria-labelledby="hardest-title">
+          <div class="case-sec__head">
+            <span class="case-sec__no" aria-hidden="true">05 /</span>
+            <h2 class="case-sec__title" id="hardest-title">最难的一个点</h2>
+          </div>
+
+          <div class="prose">
+            <p>最难受的不是取价错，是有一项功能从头到尾没生效过，而我以为它在跑。</p>
+
+            <p>AI 兜底只在页面解析失败时调用。它的位置很合理：规则读不到，就让模型看一眼页面。产品代码里的配置是 token 上限 <code>2000</code>、返回空时自动放宽到 <code>4000</code>，送进去的是价格区域裁出来的小图，截图不落盘。</p>
+
+            <p>问题是这样暴露的：调试期间我在一个诊断脚本里把预算压到 <code>300</code> 跑了一次——用的还是推理模型，推理阶段就把预算烧完了，返回空，解析结果永远是 <code>null</code>。页面上没有报错，日志里也只有一次普通调用。这说明它会在预算不足时安静地失败，而不是抛错。</p>
+
+            <p>所以真正要改的不是把数字调大，是让「返回空」变成一个能被验收抓到的失败状态。最后落成两件事：验收里加一条「AI 返回空也算失败」；同时把预算、裁图、截图不落盘这几项固定进配置。</p>
+
+            <div class="callout callout--flat">
+              <span class="callout__label">这里要更正一处我自己的写法</span>
+              <p>我原先在作品集里把 <code>300</code> 写成产品代码的初始 token 上限。逐版本核对后不成立：<code>300</code> 只出现在诊断脚本 <code>_diag</code> 里，产品代码从头到尾都是 2000 / 4000。
+              把诊断值当成产品值，是我写这一节时的错误<span class="mark mark--measured" title="实测 · 逐版本核对 token 配置；300 仅存在于 _diag 诊断脚本，产品版本均为 2000/4000">实测</span>。
+              错误本身比原说法更有信息量：它说明我复查自己的材料时，也会把“过程”和“结果”混起来。</p>
+            </div>
+
+            <p>修完之后我仍然不敢说「AI 兜底可靠」。它只是在失败路径上多了一层，不是主路径；主路径永远是规则。而且它到现在也没有被真正考验过——真实的批量采集从来没有跑过（见下一节）。</p>
+
+            <div class="callout callout--flat">
+              <span class="callout__label">这一节真正学到的</span>
+              <p>功能在跑，不等于参与决策。一个从未被调用成功的兜底，比没有兜底更危险，因为它会让人误以为已经兜住了。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 06 结果 -->
+        <section class="case-sec" id="results" aria-labelledby="results-title">
+          <div class="case-sec__head">
+            <span class="case-sec__no" aria-hidden="true">06 /</span>
+            <h2 class="case-sec__title" id="results-title">结果</h2>
+          </div>
+
+          <div class="prose">
+            <p>先给三个数，再给假设。没有假设的数字，我不放在这一节。</p>
+
+            <div class="data-table__wrap">
+              <table class="data-table">
+                <caption>单轮全量巡检 · 人工与工具对比</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">项目</th>
+                    <th scope="col">数字</th>
+                    <th scope="col">标记</th>
+                    <th scope="col">口径与假设</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="项目">自动化单轮全量</td>
+                    <td data-label="数字"><span class="data-table__num">23 分 42 秒</span></td>
+                    <td data-label="标记"><span class="mark mark--measured" title="实测 · 2 个账号 × 约 140 个 SKU，含登录、逐页取价、结果汇总；掐表实测">实测</span></td>
+                    <td data-label="口径">2 个账号 × 约 140 个 SKU，掐表实测。</td>
+                  </tr>
+                  <tr>
+                    <td data-label="项目">人工基线</td>
+                    <td data-label="数字"><span class="data-table__num">约 3 小时</span></td>
+                    <td data-label="标记"><span class="mark mark--estimated" title="估算 · 同一流程逐个搜索并核对标准价，本人实操回忆，非掐表">估算</span></td>
+                    <td data-label="口径">同一流程逐个搜索并核对标准价，本人实操回忆。</td>
+                  </tr>
+                  <tr>
+                    <td data-label="项目">每轮节省</td>
+                    <td data-label="数字"><span class="data-table__num">约 2 小时 36 分</span></td>
+                    <td data-label="标记"><span class="mark mark--inferred" title="推算 · 3 小时 − 23 分 42 秒；按每天一轮、每月 22 天，月省约 57 小时">推算</span></td>
+                    <td data-label="口径">3 小时 − 23 分 42 秒；按每天一轮、每月 22 天推算，月省约 57 小时。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="data-table__note">假设与口径：人工基线是本人实操回忆，不是掐表；自动化是掐表。两边都按 2 个账号、约 140 个 SKU 的同一流程计算。每轮节省 = 3 小时 − 23 分 42 秒。月省约 57 小时<span class="mark mark--inferred" title="推算 · 约 2 小时 36 分 × 22 个工作日；假设每天一轮、每月 22 个工作日、无中断">推算</span> 是推算：按每天一轮、每月 22 个工作日，且没有扣除中断、失败重跑和人工复核。这个假设没有经过连续运行验证，所以它只是推算，不是结论。</p>
+
+            <p><strong>验收强度：</strong><br>
+              平台适配 59/59<span class="mark mark--measured" title="实测 · 平台适配端到端验收用例全部通过，headless 浏览器跑完 console 0 error，脚本可重跑">实测</span><br>
+              巡检深度 48 通过/0 失败/3 跳过<span class="mark mark--measured" title="实测 · 巡检深度验收用例：48 通过、0 失败、3 跳过；跳过项有原因记录">实测</span><br>
+              市占率与竞品价格雷达 51/51<span class="mark mark--measured" title="实测 · 市占率与竞品价格雷达验收用例全部通过">实测</span><br>
+              三个取价引擎在 15 个构造商品页上 15/15 一致<span class="mark mark--measured" title="实测 · 三个取价引擎在 15 个构造商品页上的逐字段一致性断言全部一致">实测</span>
+            </p>
+          </div>
+        </section>
+
+        <!-- 07 证据 -->
+        <section class="case-sec" id="evidence" aria-labelledby="evidence-title">
+          <div class="case-sec__head">
+            <span class="case-sec__no" aria-hidden="true">07 /</span>
+            <h2 class="case-sec__title" id="evidence-title">证据</h2>
+          </div>
+
+          <div class="prose">
+            <p>截图还没有脱敏完，先用占位块说明每张图要证明什么。图会换，要证明的事不会换。</p>
+          </div>
+
+          <div class="evidence-grid">
+            <figure class="figure-placeholder">
+              <div class="plate plate--v1">
+                <span class="plate__cap">截图占位 · 待替换</span>
+              </div>
+              <figcaption class="figure-placeholder__cap">
+                <span class="figure-placeholder__no">01</span>
+                <span class="figure-placeholder__what"><strong>巡检结果页。</strong>跑完直接看异常列表。要证明的是：工具省掉的不是点击次数，是「必须逐页看」这件事。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="figure-placeholder">
+              <div class="plate plate--v2">
+                <span class="plate__cap">截图占位 · 待替换</span>
+              </div>
+              <figcaption class="figure-placeholder__cap">
+                <span class="figure-placeholder__no">02</span>
+                <span class="figure-placeholder__what"><strong>取价判定对比。</strong>旧逻辑同分、新逻辑只取主价格区。要证明的是：修复发生在判定层，不是调阈值。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="figure-placeholder">
+              <div class="plate plate--v3">
+                <span class="plate__cap">截图占位 · 待替换</span>
+              </div>
+              <figcaption class="figure-placeholder__cap">
+                <span class="figure-placeholder__no">03</span>
+                <span class="figure-placeholder__what"><strong>误读归因报告。</strong>76% 的会员价来自别的商品<span class="mark mark--measured" title="实测 · 2026-11-04 一次批量巡检的会员价归因：82 条里 62 条取自别的商品">实测</span>。要证明的是：我知道错在哪，也承认它是我写的旧逻辑造成的。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="figure-placeholder">
+              <div class="plate plate--v4">
+                <span class="plate__cap">截图占位 · 待替换</span>
+              </div>
+              <figcaption class="figure-placeholder__cap">
+                <span class="figure-placeholder__no">04</span>
+                <span class="figure-placeholder__what"><strong>三引擎一致性比对。</strong>十五个构造页逐字段一致。要证明的是：三个入口读到的是同一个价格，而不是三套各说各话。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="figure-placeholder">
+              <div class="plate plate--v5">
+                <span class="plate__cap">截图占位 · 待替换</span>
+              </div>
+              <figcaption class="figure-placeholder__cap">
+                <span class="figure-placeholder__no">05</span>
+                <span class="figure-placeholder__what"><strong>平台验收报告。</strong>59/59<span class="mark mark--measured" title="实测 · 平台适配端到端验收用例全部通过，脚本可重跑">实测</span>。要证明的是：平台层的「工程完整」有脚本背书，但仅限构造页面。</span>
+              </figcaption>
+            </figure>
+
+            <figure class="figure-placeholder">
+              <div class="plate plate--v6">
+                <span class="plate__cap">截图占位 · 待替换</span>
+              </div>
+              <figcaption class="figure-placeholder__cap">
+                <span class="figure-placeholder__no">06</span>
+                <span class="figure-placeholder__what"><strong>AI 兜底日志。</strong>调用有记录，返回为空。要证明的是：功能在跑和参与决策是两件事。</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="prose">
+            <h3>构造页场景清单</h3>
+            <p>十五个场景，覆盖价格从正常到坏掉的路径：</p>
+
+            <ol class="scenario-list">
+              <li>标准</li>
+              <li>PLUS</li>
+              <li>比价卡片干扰</li>
+              <li>关联推荐</li>
+              <li>隐藏价</li>
+              <li>拆分数字</li>
+              <li>折扣片段</li>
+              <li>下架</li>
+              <li>售罄</li>
+              <li>验证页</li>
+              <li>首屏外</li>
+              <li>小字划线</li>
+              <li>券后价</li>
+              <li>二次刷新</li>
+              <li>无到手价标签</li>
+            </ol>
+
+            <div class="callout callout--flat">
+              <span class="callout__label">可运行入口</span>
+              <p>浏览器加载解压后的扩展目录即可；本机取价桥需另行配置。扩展目录里不含真实账号、店铺或密钥。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 08 我做错了什么 / 如果重做 -->
+        <section class="case-sec" id="mistakes" aria-labelledby="mistakes-title">
+          <div class="case-sec__head">
+            <span class="case-sec__no" aria-hidden="true">08 /</span>
+            <h2 class="case-sec__title" id="mistakes-title">我做错了什么 / 如果重做</h2>
+          </div>
+
+          <div class="prose">
+            <p>三个问题，按难受程度排。</p>
+
+            <ol class="steps">
+              <li>76% 的误读是我自己写的旧逻辑造成的<span class="mark mark--measured" title="实测 · 2026-11-04 一次批量巡检的会员价归因：82 条里 62 条取自别的商品">实测</span>。不是数据脏，不是页面改版，是我给「到手价」容器加分这个规则本身错了。归因报告是我做得最难堪也最有用的东西：它把「系统读错了」翻译成「我判断错了」。</li>
+              <li>三份代码副本已经不同步，哪个版本是权威没有答案。同一个取价脚本在三个地方各有一份，平台里的那份比桌面原版多两处修复；交付说明自己写着「若要让原插件同步，需要把这两处补回去」。这不是技术债，是所有权债——没有人知道该信哪一份。</li>
+              <li>市占率的<strong>尺寸段</strong>覆盖率是我主动从 72% 砍到 <strong>59.75%</strong> 的（478 / 800）<span class="mark mark--measured" title="实测 · 尺寸段 478/800 = 59.75%；价格段是另一个字段 165/800 ≈ 20.6%，两者不能混说">实测</span>。同一时期<strong>价格段</strong>覆盖率是 165 / 800 ≈ 20.6%——这是另一个字段，我原先笼统写成“覆盖率”，会让人误读。收紧口径后读不到的就空着，不拿商品名去推、不拿近似值去补。宁可空置也不猜，这是取舍，不是做坏。</li>
+            </ol>
+
+            <h3>如果重做会怎么做</h3>
+            <ul>
+              <li>先写失败样本，再写取价。先把页面会怎么读错列成构造页，再动主逻辑。</li>
+              <li>一个仓库一份权威取价引擎，另外两份只引用、不复制。版本号只在一处递增，交付说明里不出现「哪份才是最新的」这种问题。</li>
+              <li>给 AI 兜底做可观测指标：调用次数、空返回次数、命中后有没有改变结果。这三项没有，就等于没有这个功能。</li>
+              <li>先写验收，再做功能。四套验收脚本至少要在「可以演示」之前跑通，而不是在交付前补。</li>
+              <li>定时器留在系统外。用外部调度跑，但「跑完看异常」这一步仍然留给人，不假装无人值守。</li>
+            </ul>
+          </div>
+        </section>
+      </article>
+
+    </div>
+
+    <footer class="wrap case-foot">
+      <nav class="case-pager" aria-label="项目切换">
+        <a class="case-pager__link" href="gym-bd.html">
+          <span class="case-pager__dir">← 上一个</span>
+          <strong>校区健身卡分销</strong>
+        </a>
+        <a class="case-pager__link case-pager__link--next" href="cs-quality.html">
+          <span class="case-pager__dir">下一个 →</span>
+          <strong>全量客服质检系统</strong>
+        </a>
+      </nav>
+
+      <section class="case-related" aria-labelledby="related-title">
+        <p class="case-related__label" id="related-title">同系列 · 实习交付</p>
+        <div class="case-related__list">
+          <a class="case-related__link" href="cs-quality.html">
+            <span class="case-related__title">Ai 全量客服质检系统</span>
+            <span class="case-related__note">把每天只抽查 2%~5% 的客服会话，变成全量质检。</span>
+            <span class="case-related__go" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <div class="case-foot__id">
+        <p>黄启康 · <a href="tel:15976479396">15976479396</a> · <a href="mailto:2856174805@qq.com">2856174805@qq.com</a> · <a href="https://github.com/big-niuNiu929" target="_blank" rel="noopener">github.com/big-niuNiu929</a></p>
+        <p>本站由手写 HTML/CSS 构建，无框架无构建工具 · 数字口径见 <a href="../method.html">方法页</a></p>
+      </div>
+
+      <p class="case-disclaimer">本页所有数字均标注口径与时间窗。估算与推算部分已写明假设。不公开公司业务数据与客户信息；原始代码整理后公开。</p>
+      <p class="case-disclaimer">本项目不包含针对任何平台的自动化规避手段；页面演示均使用自行构造的测试页面。</p>
+
+      <div class="case-foot__meta">
+        <span>作品集 2026 · 案例 01</span>
+        <span>2026.11 · 草稿</span>
+      </div>
+    </footer>
+  </main>
+  <script src="../assets/app.js" defer></script>
+  <script src="../assets/space-bg.js" defer></script>
+</body>
+</html>
+
