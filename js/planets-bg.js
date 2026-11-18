@@ -34,6 +34,21 @@ const SUN_FRONT = new THREE.Vector3(-0.72, 0.24, 0.42).normalize();
 /* 地球用"背面来光"：可见半球大半是夜面，城市灯才亮得起来；
    其他天体没有夜景贴图，给正面来光，把云带/极冠照出来。 */
 const SUN_NIGHT = new THREE.Vector3(-0.62, 0.26, -0.52).normalize();
+/* ---- 章节 → 光照情绪 ----
+   滚动到哪一节，光就从哪个方向来；这是叙事的一部分，不只是背景在动：
+   讲「问题 / 约束」时光退到侧后（看不清），讲「结果」时光几乎正打（最亮），
+   讲「没做到的部分」时太阳绕到背后（同一颗星只剩一圈冷边）。 */
+const MOODS = {
+  proof:       { sun: [-0.10, 0.34, 0.94], spin: 1.00, opacity: 0.90 },
+  problem:     { sun: [-0.58, 0.22, 0.76], spin: 0.85, opacity: 0.82 },
+  constraints: { sun: [-0.74, 0.18, 0.62], spin: 0.80, opacity: 0.78 },
+  role:        { sun: [0.20, 0.30, 0.93], spin: 1.00, opacity: 0.90 },
+  approach:    { sun: [0.46, 0.26, 0.85], spin: 1.05, opacity: 0.92 },
+  hardest:     { sun: [0.96, 0.30, 0.10], spin: 0.70, opacity: 0.88 },
+  results:     { sun: [0.08, 0.20, 0.98], spin: 1.35, opacity: 0.96 },
+  mistakes:    { sun: [-0.60, 0.26, -0.62], spin: 0.55, opacity: 0.72 }
+};
+
 const ROTATION = 0.055;      // 弧度/秒
 const CLOUD_BOOST = 1.14;
 
@@ -189,6 +204,32 @@ export function mount(root, fallbackEl, options = {}) {
 
   /* ---- 灯光：ORBITAL 压缩包原值 ---- */
   const sunDir = spec.sun || SUN_FRONT;
+  /* 叙事光照：只有带 case-sec 章节的案例页才启用，其它页面保持天体默认方向 */
+  const sections = Array.prototype.slice.call(document.querySelectorAll(".case-sec[id]"));
+  const moodTarget = new THREE.Vector3().copy(sunDir);
+  const moodNow = new THREE.Vector3().copy(sunDir);
+  let activeMood = "";
+  let moodSpin = 1;
+  let moodSpinTarget = 1;
+  let moodAlpha = options.opacity || 0.9;
+  let moodAlphaTarget = moodAlpha;
+
+  function readMood() {
+    if (!sections.length) { return; }
+    const line = window.innerHeight * 0.38;
+    let current = sections[0];
+    for (let i = 0; i < sections.length; i += 1) {
+      if (sections[i].getBoundingClientRect().top <= line) { current = sections[i]; } else { break; }
+    }
+    const id = current.id;
+    if (id === activeMood) { return; }
+    const mood = MOODS[id];
+    if (!mood) { return; }
+    activeMood = id;
+    moodTarget.set(mood.sun[0], mood.sun[1], mood.sun[2]).normalize();
+    moodSpinTarget = mood.spin == null ? 1 : mood.spin;
+    moodAlphaTarget = mood.opacity == null ? (options.opacity || 0.9) : mood.opacity;
+  }
   const uSunView = { value: new THREE.Vector3() };
   scene.add(new THREE.AmbientLight(0x1B2A52, 1.1));
   const sun = new THREE.DirectionalLight(0xFFF1DC, 4.1);
@@ -414,8 +455,8 @@ export function mount(root, fallbackEl, options = {}) {
       group.scale.setScalar(scale);
     }
 
-    sun.position.copy(sunDir).multiplyScalar(20);
-    uSunView.value.copy(sunDir).transformDirection(camera.matrixWorldInverse).normalize();
+    sun.position.copy(moodNow).multiplyScalar(20);
+    uSunView.value.copy(moodNow).transformDirection(camera.matrixWorldInverse).normalize();
     renderer.render(scene, camera);
   }
 
@@ -431,14 +472,26 @@ export function mount(root, fallbackEl, options = {}) {
   function tick(ts) {
     raf = requestAnimationFrame(tick);
     if (!last) { last = ts; }
-    const dt = Math.min((ts - last) / 1000, 0.05);
+    const elapsed = (ts - last) / 1000;
+    /* 自转用截断过的 dt（掉帧时不至于突然转一大格）；
+       光照情绪用未截断的 elapsed，好坏帧都约 1 秒内过渡到位。 */
+    const dt = Math.min(elapsed, 0.05);
+    const kd = Math.min(elapsed, 0.4);
     last = ts;
     frameCount += 1;
 
     readProgress();
+    readMood();
+    const k = 1 - Math.exp(-kd * 2.6);
+    moodNow.lerp(moodTarget, k).normalize();
+    moodSpin += (moodSpinTarget - moodSpin) * k;
+    if (Math.abs(moodAlphaTarget - moodAlpha) > 0.002) {
+      moodAlpha += (moodAlphaTarget - moodAlpha) * k;
+      canvas.style.opacity = String(moodAlpha);
+    }
     if (!reduce) {
-      group.rotation.y += dt * ROTATION * spec.spin;
-      if (clouds) { clouds.rotation.y += dt * ROTATION * (CLOUD_BOOST - 1); }
+      group.rotation.y += dt * ROTATION * spec.spin * moodSpin;
+      if (clouds) { clouds.rotation.y += dt * ROTATION * (CLOUD_BOOST - 1) * moodSpin; }
     }
     renderFrame();
     ready = true;
@@ -458,10 +511,12 @@ export function mount(root, fallbackEl, options = {}) {
   }
 
   window.addEventListener('resize', resize, { passive: true });
-  window.addEventListener('scroll', readProgress, { passive: true });
+  window.addEventListener('scroll', function () { readProgress(); readMood(); }, { passive: true });
 
   window.__orbitBg = {
     get progress() { return progress; },
+    get mood() { return activeMood; },
+    get sun() { return moodNow.toArray(); },
     get key() { return page.key; },
     get frames() { return frameCount; },
     get ready() { return ready; },
