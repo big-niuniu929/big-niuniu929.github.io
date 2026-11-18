@@ -1,0 +1,913 @@
+/* ==========================================================================
+   简历页 · 第三版（文档，不是网页）
+   --------------------------------------------------------------------------
+   基准：委托人原版《旧版简历.html》。
+   骨架继承：浅灰蓝桌面 + 一张 210×297mm 白纸；藏青主色；教育/简介浅块；
+   栏目标题藏青实底；项目＝标题 + 角色/时间/定位 + 3–5 条 ▸ 加粗小标题 bullet
+   + 项目价值；底部能力与工具；页脚口径声明。
+   第三版只做三件事：去掉装饰、把内容做厚、把学生气去掉。
+   零外链、零外部字体、零 emoji；唯一图片 assets/img/avatar.jpg。
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. 设计变量：就是委托人原版那一套，只有"加深"没有"换色"
+   -------------------------------------------------------------------------- */
+:root {
+  --ink: #1e2a3a;          /* 主色 · 藏青 */
+  --ink-deep: #1a2436;     /* 正文加深 */
+  --soft: #3d4f66;         /* 辅助 */
+  --muted: #4a5c72;        /* 次要文字 */
+  --faint: #6c7d91;        /* 注记 */
+  --tint: #f4f6fa;         /* 浅块 */
+  --line: #b0c2d4;         /* 分隔 */
+  --hair: #dbe3ec;         /* 细线 */
+
+  --sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+    "Source Han Sans SC", "Noto Sans CJK SC", "Segoe UI", Arial, sans-serif;
+
+  /* 字号：正文 9pt / 行高 1.4，正好一页 */
+  --fs-name: 24pt;
+  --fs-role: 9.2pt;
+  --fs-contact: 8.4pt;
+  --fs-intro: 9pt;
+  --fs-sec: 9pt;
+  --fs-title: 10pt;
+  --fs-date: 8.2pt;
+  --fs-meta: 8.1pt;
+  --fs-body: 9pt;
+  --fs-value: 8.6pt;
+  --fs-brief: 8.6pt;
+  --fs-skill: 8.8pt;
+  --fs-chip: 7.6pt;
+  --fs-foot: 7.3pt;
+
+  --pad-x: 13mm;
+  --pad-t: 9mm;
+  --pad-b: 7mm;
+}
+
+/* --------------------------------------------------------------------------
+   2. 重置
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #e8ecf2;
+  color: var(--ink-deep);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p { margin: 0; }
+ul, ol, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+h1, h2, h3 { margin: 0; font-weight: 700; }
+img { display: block; max-width: 100%; }
+i { font-style: normal; }
+b { font-weight: 700; color: var(--ink); }
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+a { color: inherit; text-decoration: none; }
+
+:where(a, button):focus-visible {
+  outline: 2px solid #3d4f66;
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. 桌面与工具栏：只有一层浅灰蓝，没有光晕、没有倾斜
+   -------------------------------------------------------------------------- */
+.desk {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 26px 16px;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 6px;
+  max-width: 210mm;
+  margin: auto auto 6mm;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: .02em;
+  color: var(--faint);
+}
+
+.tools a,
+.tools button {
+  color: #52647a;
+  border-bottom: 1px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+
+.tools a:hover,
+.tools button:hover {
+  color: var(--ink);
+  border-bottom-color: var(--line);
+}
+
+.tools__sep {
+  margin: 0 2px;
+  color: #a9b7c8;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. 纸：210×297mm，只有一层很淡的投影
+   -------------------------------------------------------------------------- */
+.paper {
+  display: flex;
+  flex-direction: column;
+  width: min(210mm, 100%);
+  min-height: 297mm;
+  margin: 0 auto auto;
+  padding: var(--pad-t) var(--pad-x) var(--pad-b);
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(20, 35, 58, .10);
+}
+
+/* --------------------------------------------------------------------------
+   5. 头部：姓名 / 求职定位 / 联系方式 + 右上角方形证件照
+   -------------------------------------------------------------------------- */
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 6mm;
+  align-items: end;
+  margin: 0 0 2.8mm;
+  padding-bottom: 1.4mm;
+  border-bottom: 2.5px solid var(--ink);
+}
+
+.masthead__id { min-width: 0; }
+
+.masthead__name {
+  font-size: var(--fs-name);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 1.5px;
+  color: var(--ink);
+}
+
+/* 求职定位，不是学籍 */
+.masthead__role {
+  margin-top: 1.3mm;
+  font-size: var(--fs-role);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: .04em;
+  color: var(--soft);
+}
+
+.masthead__contact {
+  margin-top: 1.6mm;
+  font-size: var(--fs-contact);
+  line-height: 1.5;
+  letter-spacing: .01em;
+  color: var(--soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.masthead__contact i.bar {
+  display: inline-block;
+  width: 1px;
+  height: 2.4mm;
+  margin: 0 2.2mm;
+  background: var(--line);
+  vertical-align: -.2mm;
+}
+
+.masthead__photo {
+  justify-self: end;
+  align-self: end;
+  width: 22mm;
+  height: 22mm;
+  padding: 1mm;
+  background: #fff;
+  border: 1px solid #cfd9e5;
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: saturate(.92) contrast(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   6. 个人简介：原版 top-summary 的浅块 + 左侧藏青竖条
+   -------------------------------------------------------------------------- */
+.intro {
+  margin: 0 0 2.4mm;
+  padding: 1.5mm 3.4mm;
+  background: var(--tint);
+  border-left: 4px solid var(--ink);
+}
+
+.intro p {
+  font-size: var(--fs-intro);
+  line-height: 1.42;
+  color: var(--ink-deep);
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.intro__label {
+  margin-right: 2.2mm;
+  letter-spacing: .14em;
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   7. 栏目标题：藏青实底标签 + 右侧细线（原版 column-header 的骨架）
+   -------------------------------------------------------------------------- */
+.sec {
+  display: flex;
+  align-items: center;
+  gap: 0 2.6mm;
+  margin: 1.7mm 0 1mm;
+}
+
+.sec__label {
+  flex: 0 0 auto;
+  padding: .22mm 2mm .36mm;
+  background: var(--ink);
+  color: #fff;
+  font-size: var(--fs-sec);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: .14em;
+  white-space: nowrap;
+}
+
+.sec__rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--hair);
+}
+
+/* --------------------------------------------------------------------------
+   8. 条目：标题 + 时间 + 角色/定位 + bullets + 项目价值
+   -------------------------------------------------------------------------- */
+.entry { margin: 0 0 0.6mm; }
+
+.entry__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0 4mm;
+}
+
+.entry__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--fs-title);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: .01em;
+  color: var(--ink);
+}
+
+.entry__date {
+  flex: 0 0 auto;
+  font-size: var(--fs-date);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: .01em;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.entry__meta {
+  margin-top: .55mm;
+  font-size: var(--fs-meta);
+  line-height: 1.42;
+  color: var(--muted);
+}
+
+.entry__meta b {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.sep {
+  margin: 0 1.7mm;
+  color: var(--line);
+}
+
+/* bullet：▸ + 加粗小标题 + 内容 + 数字 + 结果 */
+.bullets {
+  margin-top: .8mm;
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  color: var(--ink-deep);
+}
+
+.bullets li {
+  position: relative;
+  margin-bottom: .2mm;
+  padding-left: 3.4mm;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.bullets li:last-child { margin-bottom: 0; }
+
+.bullets li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 8pt;
+  line-height: 1.57;
+  color: var(--soft);
+}
+
+.bullets--tight li { margin-bottom: .15mm; }
+
+/* 项目价值：浅块 + 细竖条，原版 value-box */
+.value {
+  margin-top: .9mm;
+  padding: .6mm 2.6mm;
+  background: var(--tint);
+  border-left: 3px solid var(--soft);
+  font-size: var(--fs-value);
+  line-height: 1.42;
+  color: var(--ink-deep);
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+/* --------------------------------------------------------------------------
+   9. 其他经历：压成两行，不展开
+   -------------------------------------------------------------------------- */
+.brief {
+  font-size: var(--fs-brief);
+  line-height: 1.42;
+  color: var(--ink-deep);
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.brief li {
+  margin-bottom: .9mm;
+  padding-left: 3.4mm;
+  position: relative;
+}
+
+.brief li:last-child { margin-bottom: 0; }
+
+.brief li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 7.6pt;
+  line-height: 1.64;
+  color: var(--soft);
+}
+
+.brief b { font-weight: 700; }
+
+.brief__meta {
+  margin: 0 1.6mm 0 2mm;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.brief__sep {
+  margin-right: 1.4mm;
+  color: var(--line);
+}
+
+/* --------------------------------------------------------------------------
+   10. 工具技能：两行定义 + 标签云
+   -------------------------------------------------------------------------- */
+.skills {
+  font-size: var(--fs-skill);
+  line-height: 1.42;
+  color: var(--ink-deep);
+}
+
+.skills__row {
+  display: grid;
+  grid-template-columns: 19mm minmax(0, 1fr);
+  column-gap: 3mm;
+  padding: .15mm 0;
+}
+
+.skills dt {
+  font-weight: 700;
+  color: var(--soft);
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.skills dd { min-width: 0; }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9mm 1.6mm;
+  margin-top: .9mm;
+}
+
+.chips li {
+  padding: .15mm 1.9mm .35mm;
+  background: var(--tint);
+  border: 1px solid #e0e7f0;
+  font-size: var(--fs-chip);
+  line-height: 1.5;
+  letter-spacing: .02em;
+  color: var(--soft);
+}
+
+/* --------------------------------------------------------------------------
+   11. 教育
+   -------------------------------------------------------------------------- */
+.edu__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--fs-title);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: .005em;
+  color: var(--ink);
+}
+
+.block--last { margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
+   12. 页脚：两行口径与免责
+   -------------------------------------------------------------------------- */
+.foot {
+  margin-top: auto;
+  padding-top: 1.4mm;
+  border-top: 1px solid var(--hair);
+}
+
+.foot p {
+  font-size: var(--fs-foot);
+  line-height: 1.45;
+  letter-spacing: .01em;
+  color: var(--faint);
+}
+
+/* --------------------------------------------------------------------------
+   13. 屏幕：宽屏固定成一张 A4，小屏让纸变窄、内容自然流
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 900px) {
+  .paper {
+    height: 297mm;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .desk { padding: 18px 10px 36px; }
+
+  .paper {
+    min-height: 0;
+    padding: 7% 6%;
+  }
+
+  .masthead { column-gap: 4mm; }
+
+  .masthead__photo {
+    width: 20mm;
+    height: 20mm;
+    padding: .8mm;
+  }
+
+  .masthead__contact { line-height: 1.7; }
+
+  .entry__head { flex-wrap: wrap; }
+  .entry__date { margin-top: .3mm; }
+
+  .skills__row { grid-template-columns: 1fr; row-gap: .2mm; }
+
+  .sec { margin-top: 3mm; }
+}
+
+/* --------------------------------------------------------------------------
+   14. 打印：白纸，正好一页 A4
+   -------------------------------------------------------------------------- */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    background: #fff;
+  }
+
+  body { margin: 0; }
+
+  .desk {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .tools { display: none !important; }
+
+  .paper {
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: var(--pad-t) var(--pad-x) var(--pad-b);
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  .paper,
+  .paper * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a,
+  a:link,
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .entry,
+  .brief li,
+  .skills,
+  .chips,
+  .foot { break-inside: avoid; }
+}
+
+
+/* 求职定位：一行横排（竖排是旧版遗留，这里改回横排 + 中点分隔） */
+.masthead__role span {
+  display: inline;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.masthead__role span + span::before {
+  content: "·";
+  margin: 0 .55em;
+  color: #aab6c6;
+}
+
+/* 紧凑条：社会实践类只占一行 */
+.brief--compact {
+  margin-top: 4px;
+}
+
+.brief--compact li {
+  font-size: 11.2px;
+}
+
+
+/* ---------------------------------------------------------------
+   关键词高亮：为了速读。数字用淡蓝底，关键短语用下划高亮。
+   --------------------------------------------------------------- */
+.bullets b,
+.brief b {
+  color: #10233a;
+  background: linear-gradient(transparent 60%, rgba(155, 197, 243, .38) 60%);
+  padding: 0 .4mm;
+  font-weight: 700;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: #10304f;
+  background: rgba(155, 197, 243, .30);
+  border-radius: .7mm;
+  padding: 0 .55mm;
+  white-space: nowrap;
+}
+
+.value b {
+  background: none;
+  color: #10233a;
+}
+
+.entry__title {
+  position: relative;
+}
+
+
+/* ---------------------------------------------------------------
+   MULTI-PAGE：完整版允许多页，简洁版仍强制一页
+   原来 .paper 固定 297mm + overflow:hidden，超出部分会被裁掉。
+   --------------------------------------------------------------- */
+.resume-full .paper {
+  height: auto;
+  min-height: 297mm;
+  overflow: visible;
+}
+
+@media print {
+  .resume-full .paper {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .resume-full .block,
+  .resume-full .entry {
+    break-inside: auto;
+  }
+
+  .resume-full .sec {
+    break-after: avoid;
+    break-inside: avoid;
+  }
+
+  .resume-full .entry__head {
+    break-after: avoid;
+  }
+
+  .resume-full .foot {
+    break-inside: avoid;
+  }
+}
+
+
+/* 案例索引：完整版第 2 页的收尾 */
+.idx {
+  margin: 0;
+  font-size: var(--fs-brief);
+  line-height: 1.42;
+}
+
+.idx > div {
+  display: grid;
+  grid-template-columns: 62mm minmax(0, 1fr);
+  column-gap: 4mm;
+  padding: .55mm 0;
+  border-bottom: 1px solid var(--hair);
+}
+
+.idx > div:last-child { border-bottom: 0; }
+
+.idx dt {
+  font-weight: 700;
+  color: var(--ink-deep);
+}
+
+.idx dd {
+  margin: 0;
+  color: var(--soft);
+}
+
+.idx dd b {
+  color: var(--ink-deep);
+  background: rgba(155, 197, 243, .30);
+  border-radius: .7mm;
+  padding: 0 .5mm;
+}
+
+.idx__foot {
+  margin: 1.2mm 0 0;
+  font-size: 7.6pt;
+  color: var(--muted);
+}
+
+
+/* ---------------------------------------------------------------
+   OLD-PALETTE：回到旧版简历的配色纪律
+   只有三档：藏青 #1e2a3a（主）/ 钢蓝 #3d6a8c（唯一强调）/ 灰阶。
+   不再给数字加底色——数字不是重点，判断和结果才是。
+   --------------------------------------------------------------- */
+:root {
+  --accent-steel: #3d6a8c;
+  --ink-deep: #1e2a3a;
+  --soft: #3d4f66;
+  --muted: #5a6f84;
+  --faint: #6f8194;
+}
+
+/* 关键词：只靠字重，不靠颜色 */
+.bullets b,
+.brief b,
+.entry__meta b,
+.idx dd b,
+.intro b {
+  background: none !important;
+  color: var(--ink) !important;
+  font-weight: 700;
+  padding: 0;
+}
+
+/* 数字：恢复普通正文，只保留等宽对齐 */
+.num {
+  background: none !important;
+  color: inherit !important;
+  font-weight: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 项目价值框：旧版用的钢蓝左线 */
+.value {
+  background: var(--tint);
+  border-left: 3px solid var(--accent-steel);
+}
+
+/* 顶部简介：深色左线，与旧版一致 */
+.intro {
+  background: var(--tint);
+  border-left: 4px solid var(--ink);
+  border-radius: 1mm;
+}
+
+/* 章节标题：实心藏青块 */
+.sec__label {
+  background: var(--ink);
+  color: #fff;
+  border-radius: .5mm;
+  letter-spacing: .16em;
+}
+
+.sec__rule {
+  background: #e0e5ec;
+}
+
+/* 关键词标签：旧版 tool-tags 的灰底 */
+.chips li {
+  background: #eef1f5;
+  border: 1px solid #e4e9f0;
+  color: var(--ink);
+}
+
+/* 项目副标题：旧版是点状下划线 */
+.entry__meta {
+  border-bottom: 1px dashed #e6eaef;
+  padding-bottom: .6mm;
+}
+
+/* 页首粗线 */
+.masthead {
+  border-bottom: 2.5px solid var(--ink);
+}
+
+/* 索引行：细线更轻 */
+.idx > div {
+  border-bottom: 1px solid #e6eaef;
+}
+
+
+/* ==========================================================================
+   排版层级（TYPESET-V2）
+   --------------------------------------------------------------------------
+   用户要求：标题 / 子标题 / 正文 / 重点词 要有明确的大小、颜色、粗细差异，
+   并且给「OPC 项目」「集团内赛」这类身份词做成**浅色小标签**（比周围亮一档，
+   但不要荧光）。这里只在原变量上做覆盖，不动骨架。
+     姓名  25pt / 700 / 近黑     ← 页面唯一的"最大"
+     定位  9pt  / 500 / 灰蓝     ← 比姓名低两级
+     栏目  9.2pt/ 700 / 白字藏青底
+     项目  10.6pt/700 / 藏青     ← 比正文大一档，靠字重和字号区分
+     正文  9pt  / 400 / #2c3a4b  ← 行高 1.52，读起来不挤
+     重点  700 / 钢蓝 #1f4d70    ← 只在 bullet 小标题上给颜色，不铺底
+     标签  7.2pt/ 600 / 浅蓝底   ← OPC 项目 / 个人项目
+     金标  7.2pt/ 600 / 浅金底   ← 集团内赛（赛事/奖项专用）
+   ========================================================================== */
+:root {
+  --fs-name: 28pt;
+  --fs-role: 10.2pt;
+  --fs-contact: 9pt;
+  --fs-intro: 10.6pt;
+  --fs-sec: 10.4pt;
+  --fs-title: 12.2pt;
+  --fs-date: 9pt;
+  --fs-meta: 9.4pt;
+  --fs-body: 10.4pt;
+  --fs-value: 9.8pt;
+  --fs-brief: 9.8pt;
+  --fs-skill: 9.6pt;
+  --fs-chip: 8pt;
+  --fs-foot: 7.8pt;
+
+  --em: #33628a;
+  --tag-bg: #eaf1f8;
+  --tag-ink: #2b5876;
+  --tag-line: #d3e2ef;
+  --tag-gold-bg: #f7f0e2;
+  --tag-gold-ink: #8a6a35;
+  --tag-gold-line: #ecdfc6;
+}
+
+/* 一级：姓名 */
+.masthead__name { letter-spacing: .02em; }
+
+/* 二级：求职定位（横排一行，比姓名轻、比正文淡） */
+.masthead__role { font-weight: 500; letter-spacing: .01em; color: var(--soft); }
+
+/* 栏目条：白字藏青底，字距拉开 */
+.sec__label { letter-spacing: .16em; }
+
+/* 三级：项目名 / 日期 */
+.entry__title { letter-spacing: .004em; color: var(--ink); }
+.entry__date { letter-spacing: .02em; }
+
+/* 角色行：粗体藏青 + 分隔符 */
+.entry__meta { line-height: 1.6; }
+.entry__meta b { color: var(--ink); }
+
+/* 正文：略宽的色阶，行高松一点 */
+.bullets li { color: #2c3a4b; line-height: 1.52; }
+.brief li { color: #2c3a4b; }
+.value { color: #2c3a4b; }
+
+/* 重点词：只给颜色，不铺底色（钢蓝提亮一档，和正文藏青拉开但不刺眼） */
+.bullets li b,
+.value b,
+.brief b,
+.skills dd b,
+.intro p b:not(.intro__label) { color: var(--em); }
+
+/* 方法关键词：和标签同一套语言 */
+.chips li {
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-line);
+  color: var(--tag-ink);
+  font-weight: 500;
+}
+
+/* 强调数字：等宽、略深 */
+.num { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; }
+
+/* 小标签：OPC 项目 / 个人项目 */
+.tag {
+  display: inline-block;
+  margin: 0 .22em;
+  padding: .1em .5em .16em;
+  border: 1px solid var(--tag-line);
+  border-radius: 1.6px;
+  background: var(--tag-bg);
+  color: var(--tag-ink);
+  font-size: .8em;
+  font-weight: 600;
+  letter-spacing: .04em;
+  line-height: 1.35;
+  white-space: nowrap;
+  vertical-align: .06em;
+}
+
+/* 间距随字号一起放大：原版是给 9pt 配的紧凑节奏 */
+.bullets li { line-height: 1.62; margin-bottom: .5mm; }
+.brief li { line-height: 1.62; }
+.value { line-height: 1.55; }
+.entry__meta { line-height: 1.68; }
+.intro p { line-height: 1.62; }
+.skills dd { line-height: 1.6; }
+.skills dt { line-height: 1.6; }
+
+/* 块间距：让两页之间有呼吸，不靠字号硬撑 */
+.block { margin-top: 5.2mm; }
+.entry + .entry { margin-top: 4.6mm; }
+.sec { margin-bottom: 2.6mm; padding-bottom: 1.1mm; }
+.masthead { padding-bottom: 4.2mm; }
+.intro { margin: 4.4mm 0 2.4mm; padding: 3.2mm 4mm; }
+.value { margin-top: 1.8mm; padding: 1.8mm 2.6mm; }
+.foot { margin-top: 5mm; }
+
+.tag--gold {
+  background: var(--tag-gold-bg);
+  border-color: var(--tag-gold-line);
+  color: var(--tag-gold-ink);
+}
+
+@media print {
+  .tag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* 分页纪律：标题不落单、bullet 不腰斩 */
+@media print {
+  .sec,
+  .entry__head { break-after: avoid; break-inside: avoid; }
+  .bullets li,
+  .brief li,
+  .value,
+  .idx > div,
+  .skills__row { break-inside: avoid; }
+}

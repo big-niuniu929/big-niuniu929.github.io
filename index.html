@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="space-html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黄启康 · 案例 2026</title>
+  <meta name="description" content="六个项目，每一个数字都标着它是怎么来的。点击了解我的世界展厅。">
+  <meta name="theme-color" content="#05080E">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="color-scheme" content="dark">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preload" as="image" href="vendor/textures-hd/earth_day.jpg">
+  <link rel="preload" as="image" href="vendor/textures-hd/earth_clouds.png">
+  <script>
+    /* 旧链接（work/*.html 里的 ../index.html#work）仍然落到案例，
+       入口页本身不参与滚动叙事。 */
+    (function () {
+      var hash = location.hash;
+      if (/^#(work|all|caliber|caliber-table|about|contact)$/.test(hash)) {
+        location.replace('portfolio.html' + hash);
+      }
+    })();
+  </script>
+  <style>
+    .space-loading{display:inline-block;margin-left:8px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--muted);opacity:.8}
+    body.space-earth-built .space-loading{display:none}
+  </style>
+</head>
+<body class="space-body">
+  <a class="space-skip" href="#space-main">跳到正文</a>
+
+  <main class="space-main" id="space-main">
+    <div class="space-stage" id="space-stage" data-state="gate">
+
+      <canvas class="space-scene" id="space-scene" aria-hidden="true"></canvas>
+
+      <!-- 地球贴图默认 4K；?lite=1 或设备不支持 4096 时回退 2K。
+           两套贴图都在站内，首帧之后才加载，解码完淡入。 -->
+
+      <!-- WebGL 不可用时的静态兜底：CSS 星空 + 圆形地球占位 -->
+      <div class="space-fallback" id="space-fallback" aria-hidden="true">
+        <div class="space-fallback__nebula"></div>
+        <div class="space-fallback__stars"></div>
+        <div class="space-fallback__earth"></div>
+      </div>
+
+      <div class="space-vignette" aria-hidden="true"></div>
+
+      <!-- 顶部细导航：品牌左、四个链接右 -->
+      <nav class="space-nav" aria-label="主导航">
+        <a class="space-brand" href="index.html">
+          <span class="space-brand__mark" aria-hidden="true"></span>
+          黄启康 · 案例 2026
+        </a>
+        <ul class="space-nav__links">
+          <li><a href="portfolio.html#work">案例</a></li>
+          <li><a href="method.html">方法</a></li>
+          <li><a href="resume.html">简历</a></li>
+          <li><a href="portfolio.html#about">关于</a></li>
+          <li><a href="portfolio.html#contact">联系</a></li>
+        </ul>
+      </nav>
+
+      <!-- 入口文字：极小 eyebrow → 两行巨标题 → 两行副标题 -->
+      <header class="space-gate">
+        <div class="space-gate__copy">
+          <p class="space-eyebrow">PORTFOLIO · 2026</p>
+
+          <h1 class="space-title">
+            <span class="space-title__line">欢迎来到</span>
+            <span class="space-title__line">我的世界<span class="space-title__dot">。</span></span>
+          </h1>
+
+          <div class="space-sub">
+            <p>AI 流程自动化</p>
+            <p>企业提效方向</p>
+            <p>AI 产品 / 运营</p>
+          </div>
+
+          <button class="space-enter" type="button" data-enter>
+            <span class="space-enter__dot" aria-hidden="true"></span>
+            <span class="space-enter__text">点击了解我的世界</span>
+          </button>
+
+          <nav class="space-gate__cats" aria-label="按项目来路直接进入案例">
+            <span class="space-gate__cats-label">按来路</span>
+            <!-- GATECATS:START -->
+            <a href="portfolio.html?filter=%E5%88%9B%E4%B8%9A%E9%A1%B9%E7%9B%AE#work">
+              <span>创业项目</span>
+              <span class="space-gate__cats-n">1</span>
+            </a>
+            <a href="portfolio.html?filter=%E5%AE%9E%E4%B9%A0%E4%BA%A4%E4%BB%98#work">
+              <span>实习交付</span>
+              <span class="space-gate__cats-n">2</span>
+            </a>
+            <a href="portfolio.html?filter=%E5%95%86%E4%B8%9A%E5%AE%9E%E8%B7%B5#work">
+              <span>商业实践</span>
+              <span class="space-gate__cats-n">2</span>
+            </a>
+            <a href="portfolio.html?filter=%E4%B8%AA%E4%BA%BA%E4%BA%A7%E5%93%81#work">
+              <span>个人产品</span>
+              <span class="space-gate__cats-n">1</span>
+            </a>
+<!-- GATECATS:END -->
+          </nav>
+        </div>
+
+        <p class="space-watermark" aria-hidden="true">ORBITAL</p>
+      </header>
+
+      <!-- 右边缘细进度条：随进入进度填充 -->
+      <div class="space-rail" aria-hidden="true"><span class="space-rail__fill"></span></div>
+
+      <!-- 右下角：三步指示 + 圆形入口 -->
+      <div class="space-dock">
+        <div class="space-steps" aria-hidden="true">
+          <span class="space-steps__item is-active">认知</span>
+          <span class="space-steps__item">交付</span>
+          <span class="space-steps__item">变现</span>
+        </div>
+        <button class="space-circle" type="button" data-enter aria-label="进入作品展厅">
+          <span aria-hidden="true">进入</span>
+        </button>
+      </div>
+
+      <!-- 展厅面板：分类入口 + 精选三件。构建时注入，运行时再按 JSON 校一次。 -->
+      <section class="space-panel" id="space-panel" aria-labelledby="space-panel-title">
+        <div class="space-panel__head">
+          <p class="space-panel__label">Enter by category</p>
+          <p class="space-panel__label" id="space-project-count">06 projects</p>
+        </div>
+
+        <h2 class="space-panel__title" id="space-panel-title">先选一类，再往下看。</h2>
+        <p class="space-panel__note">四种来路、六个项目。点分类直接进入案例，并自动套用筛选。</p>
+          <a class="space-panel__enter" href="portfolio.html#work"><span>进入案例</span><span aria-hidden="true">→</span></a>
+
+        <nav class="space-cats" aria-label="按项目来路浏览案例">
+          <!-- CATEGORIES:START -->
+          <a class="space-cat space-cat--all" href="portfolio.html#work">
+            <span class="space-cat__name">全部</span>
+            <span class="space-cat__count">6 个</span>
+            <span class="space-cat__desc">六个项目，四种来路。把反复判断的事交给机器，并留下能复算的痕迹。</span>
+            <span class="space-cat__go" aria-hidden="true">→</span>
+          </a>
+          <a class="space-cat" href="portfolio.html?filter=%E5%88%9B%E4%B8%9A%E9%A1%B9%E7%9B%AE#work">
+            <span class="space-cat__name">创业项目</span>
+            <span class="space-cat__count">1 个</span>
+            <span class="space-cat__desc">从 0 定义到交付，一个人跑通整条链。</span>
+            <span class="space-cat__go" aria-hidden="true">→</span>
+          </a>
+          <a class="space-cat" href="portfolio.html?filter=%E5%AE%9E%E4%B9%A0%E4%BA%A4%E4%BB%98#work">
+            <span class="space-cat__name">实习交付</span>
+            <span class="space-cat__count">2 个</span>
+            <span class="space-cat__desc">在真实工位上交付，同事每天在用的工具。</span>
+            <span class="space-cat__go" aria-hidden="true">→</span>
+          </a>
+          <a class="space-cat" href="portfolio.html?filter=%E5%95%86%E4%B8%9A%E5%AE%9E%E8%B7%B5#work">
+            <span class="space-cat__name">商业实践</span>
+            <span class="space-cat__count">2 个</span>
+            <span class="space-cat__desc">自己开店、分销、定价、售后，全流程走一遍。</span>
+            <span class="space-cat__go" aria-hidden="true">→</span>
+          </a>
+          <a class="space-cat" href="portfolio.html?filter=%E4%B8%AA%E4%BA%BA%E4%BA%A7%E5%93%81#work">
+            <span class="space-cat__name">个人产品</span>
+            <span class="space-cat__count">1 个</span>
+            <span class="space-cat__desc">从产品定义到公网部署，一个人做完。</span>
+            <span class="space-cat__go" aria-hidden="true">→</span>
+          </a>
+<!-- CATEGORIES:END -->
+        </nav>
+
+        <p class="space-panel__sub">精选 3 件 · 数字都标着来源</p>
+
+        <div id="space-panel-list">
+          <!-- FEATURED:START -->
+          <article class="space-project">
+            <p class="space-project__no">01</p>
+            <div>
+              <h3 class="space-project__title"><a href="work/weiguang.html">微光 · 民事文书辅助</a></h3>
+              <p class="space-project__line">把非标的小额纠纷咨询，做成一条可复用的文书起草流水线。</p>
+              <ul class="space-metrics">
+                <li class="space-metric">
+                  <span class="space-metric__value">98 份<span class="space-mark space-mark--measured" title="实测 · 实测 · 累计交付">实测</span></span>
+                  <span class="space-metric__label">交付文书</span>
+                </li>
+                <li class="space-metric">
+                  <span class="space-metric__value">89 人<span class="space-mark space-mark--measured" title="实测 · 实测 · 当事人自行提交完成">实测</span></span>
+                  <span class="space-metric__label">完成在线立案</span>
+                </li>
+                <li class="space-metric">
+                  <span class="space-metric__value">100+ 人次<span class="space-mark space-mark--measured" title="实测 · 实测 · 2025.07 至今，按人去重">实测</span></span>
+                  <span class="space-metric__label">累计咨询</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="space-project">
+            <p class="space-project__no">02</p>
+            <div>
+              <h3 class="space-project__title"><a href="work/price-patrol.html">价格监控平台（自身巡检与外部监控）</a></h3>
+              <p class="space-project__line">手动抄 146 个商品页的价格要 3 小时；改成点一次按钮，23 分 42 秒跑完并标红破价。</p>
+              <ul class="space-metrics">
+                <li class="space-metric">
+                  <span class="space-metric__value">约 684 小时/年<span class="space-mark space-mark--inferred" title="推算 · 推算 · 约 57 小时/月 × 12；按每天一轮、每月 22 个工作日">推算</span></span>
+                  <span class="space-metric__label">省下的人工</span>
+                </li>
+                <li class="space-metric">
+                  <span class="space-metric__value">23 分 42 秒<span class="space-mark space-mark--measured" title="实测 · 实测 · 2 个账号 × 约 140 个 SKU，掐表">实测</span></span>
+                  <span class="space-metric__label">单轮全量</span>
+                </li>
+                <li class="space-metric">
+                  <span class="space-metric__value">146<span class="space-mark space-mark--measured" title="实测 · 实测 · 基表 153 行，其中 7 行空置或下架">实测</span></span>
+                  <span class="space-metric__label">覆盖商品</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="space-project">
+            <p class="space-project__no">03</p>
+            <div>
+              <h3 class="space-project__title"><a href="work/cs-quality.html">Ai 全量客服质检系统</a></h3>
+              <p class="space-project__line">把每天只抽查 2%~5% 的客服会话，变成全量质检；人不在，系统自己跑完一整批。</p>
+              <ul class="space-metrics">
+                <li class="space-metric">
+                  <span class="space-metric__value">10,000+ 条/月<span class="space-mark space-mark--measured" title="实测 · 实测 · 电商客服月咨询量过万，抽样覆盖只有 2%~5%">实测</span></span>
+                  <span class="space-metric__label">会话量</span>
+                </li>
+                <li class="space-metric">
+                  <span class="space-metric__value">100%<span class="space-mark space-mark--measured" title="实测 · 实测 · 规则初筛 + 模型复核，不再靠抽样">实测</span></span>
+                  <span class="space-metric__label">全量覆盖</span>
+                </li>
+                <li class="space-metric">
+                  <span class="space-metric__value">约 1 分钱 / 3–5 条<span class="space-mark space-mark--measured" title="实测 · 实测 · 按调用单价折算，不含重试">实测</span></span>
+                  <span class="space-metric__label">模型成本</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+<!-- FEATURED:END -->
+        </div>
+
+        <div class="space-panel__links">
+          <a class="space-panel__link" href="method.html">数字口径是怎么管的 <span aria-hidden="true">→</span></a>
+          <a class="space-panel__link" href="resume.html">一页纸简历 <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <!-- CC BY 4.0 署名：法律要求，必须可见 -->
+      <p class="space-credit">
+        地球影像 © Solar System Scope · <a href="vendor/CREDITS.md">CC BY 4.0</a> ｜ 渲染 three.js (MIT) ｜ 星云 NASA / STScI（公有领域）
+      </p>
+
+    </div>
+  </main>
+
+  <noscript>
+    <style>
+      .space-nav {
+        position: relative;
+        z-index: 6;
+        height: auto;
+        padding: 18px var(--pad);
+        background: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+      .space-gate {
+        position: relative;
+        inset: auto;
+        display: block;
+        min-height: 86svh;
+        padding: 20px var(--pad) 30px;
+      }
+      .space-gate__copy { max-width: 44em; }
+      .space-enter,
+      .space-watermark,
+      .space-dock,
+      .space-rail { display: none; }
+      .space-panel {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: auto;
+        max-height: none;
+        margin: 0 var(--pad) 24px;
+        padding: 24px 20px;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        pointer-events: auto;
+        display: block;
+        overflow: visible;
+      }
+      .space-fallback {
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 100svh;
+      }
+      .space-fallback__earth { display: block; }
+      .space-credit {
+        position: static;
+        margin: 0;
+        padding: 0 var(--pad) 28px;
+      }
+      @media (max-width: 820px) {
+        .space-gate {
+          min-height: 74svh;
+          padding: 54svh var(--pad) 26px;
+        }
+      }
+    </style>
+  </noscript>
+
+  <script src="js/orbital.js" defer></script>
+</body>
+</html>

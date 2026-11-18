@@ -1,0 +1,176 @@
+{
+  "price-patrol": {
+    "note": "截图取自本地加载的真实浏览器扩展（构造演示数据）：商品、价格、阈值与真实业务无关。为聚焦证据，截图时隐藏了 AI/API 状态条与部分行内按钮，个别状态标签为补充标注。",
+    "shots": [
+      {
+        "file": "media/price-patrol/01-价格巡检-总览-商品比价与破价标红.webp",
+        "caption": "巡检总览：商品、标准价与当前价对比，破价行标红",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/price-patrol/02-竞品雷达-异动中心-分级预警.webp",
+        "caption": "异动中心：基准价到当前价，按幅度分级提醒",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/price-patrol/03-自动化验收-四套脚本终端输出.webp",
+        "caption": "验收记录：四套自动化验收的本机复跑输出",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/price-patrol/04-业务一-店铺价格巡检-破价标红.webp",
+        "caption": "店铺价格巡检：商品比对与破价标红",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/price-patrol/05-业务三-竞品价格监控-异动中心.webp",
+        "caption": "竞品监控：异动中心与分级预警",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/price-patrol/06-业务三-统计页面-价格带分布.webp",
+        "caption": "统计页面：价格带与波动分布",
+        "ratio": "16/9"
+      }
+    ],
+    "repo": {
+      "url": "https://github.com/big-niuniu929/price-patrol",
+      "label": "项目仓库"
+    }
+  },
+  "cs-quality": {
+    "note": "界面按真实系统结构重绘，数值为构造演示值；不包含真实会话、员工与客户信息。",
+    "shots": [
+      {
+        "file": "media/cs-quality/01-质检总览-1708条会话风险分层.webp",
+        "caption": "质检总览：1,708 条会话按风险分层",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/cs-quality/02-会话详情-扣分项指回原句.webp",
+        "caption": "单条会话：每个扣分项都指回对应原句",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/cs-quality/03-评分规则-业务规则与AI语义双轨.webp",
+        "caption": "评分规则：业务规则与 AI 语义双轨判定",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/cs-quality/04-对话角色分割-谁在说话.webp",
+        "caption": "对话角色分割：区分客服与客户发言",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/cs-quality/05-深度挖掘-疑点追问.webp",
+        "caption": "深度挖掘：对可疑会话追问",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/cs-quality/06-大模型配置-规则之外的第二层.webp",
+        "caption": "大模型配置：规则之外的第二层判定",
+        "ratio": "16/9"
+      }
+    ],
+    "repo": {
+      "url": "https://github.com/big-niuniu929/cs-quality-audit",
+      "label": "项目仓库"
+    }
+  },
+  "jianhe": {
+    "note": "截图来自本地运行的真实程序；简历为虚构演示数据（林知远），不对应任何真实个人。",
+    "shots": [
+      {
+        "file": "media/jianhe/01-简历诊断-67分C档与问题高亮.webp",
+        "caption": "简历诊断：67 分 C 档，问题句在正文里直接标出",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/jianhe/02-追问清单-13题数字口径追问.webp",
+        "caption": "追问清单：每个数字都要能交代口径",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/jianhe/03-改写对照-同一句三种改写.webp",
+        "caption": "改写对照：原句 → 三个侧重版本，缺证据会先标出",
+        "ratio": "16/9"
+      }
+    ],
+    "repo": {
+      "url": "https://github.com/big-niuniu929/jianhe",
+      "label": "项目仓库"
+    }
+  },
+  "pdd-store": {
+    "note": "按真实运营工作方式重绘的表格与报告，数据全部为构造值；店铺名、真实金额不披露。",
+    "shots": [
+      {
+        "file": "media/pdd-store/01-店铺后台-32个SKU上架列表.webp",
+        "caption": "店铺后台：30+ SKU 的类目、价格与库存",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/pdd-store/02-动态报价表-成本运费到手价公式.webp",
+        "caption": "动态报价表：成本、运费、到手价拆开算",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/pdd-store/03-亏损诊断-时间线与四维归因.webp",
+        "caption": "亏损诊断：三个月时间线与四维归因",
+        "ratio": "16/9"
+      }
+    ],
+    "repo": {
+      "url": "https://github.com/big-niuniu929/pdd-store",
+      "label": "项目仓库"
+    }
+  },
+  "weiguang": {
+    "note": "微光当时没有搭成工作台：以下页面按「材料 → 检索 → 初稿 → 校对」四步流程重绘，用来演示流程形态，不是真实系统截图；案情为虚构（租客与房东押金纠纷），不含任何真实案件、当事人或机构信息。",
+    "shots": [
+      {
+        "file": "media/weiguang/04-交付成果-文书与模板库.webp",
+        "caption": "交付成果：文书与 15 类模板库",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/weiguang/01-材料汇总-证据时间线诉求归类.webp",
+        "caption": "材料汇总：证据、时间线、诉求分开摆",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/weiguang/02-同类文书检索-案由争议焦点筛选.webp",
+        "caption": "同类文书检索：按案由与争议焦点筛选",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/weiguang/03-初稿校对-AI起草人工逐段确认.webp",
+        "caption": "初稿与校对：AI 起草，人工逐段确认",
+        "ratio": "16/9"
+      }
+    ],
+    "repo": {
+      "url": "https://github.com/big-niuniu929/weiguang",
+      "label": "项目仓库"
+    }
+  },
+  "gym-bd": {
+    "note": "按真实报价与社群场景重绘，数据全部为构造值；门店与学员昵称已隐去。",
+    "shots": [
+      {
+        "file": "media/gym-bd/01-分层报价表-三档价格与提成.webp",
+        "caption": "分层报价表：单次、团购、续卡与提成",
+        "ratio": "16/9"
+      },
+      {
+        "file": "media/gym-bd/02-私域接龙-报名与成交记录.webp",
+        "caption": "私域社群：报名接龙与成交记录",
+        "ratio": "16/9"
+      }
+    ],
+    "repo": {
+      "url": "https://github.com/big-niuniu929/gym-card-bd",
+      "label": "项目仓库"
+    }
+  }
+}
