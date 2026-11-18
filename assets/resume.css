@@ -1060,3 +1060,69 @@ a { color: inherit; text-decoration: none; }
 .cols .block { margin-top: 1.9mm; }
 .masthead { padding-bottom: 1.8mm; }
 
+/* ==========================================================================
+   SINGLE COLUMN · TWO REAL A4 SHEETS
+   2026-11-18 用户要求：不要在一页里做左右两栏，按 A4 比例排版。
+   → 单栏 + 两张真正的 A4 纸（屏幕上是两张纸，打印是两页）。
+   ========================================================================== */
+body.resume-full .paper {
+  display: block;
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  overflow: hidden;
+  flex: none;
+}
+
+.desk { gap: 0; }
+
+.paper--2 { margin-top: 8mm; }
+
+/* 页内排版：单栏，字号按「一页可读」重排 */
+body.resume-full {
+  --fs-name: 25pt;
+  --fs-role: 10.2pt;
+  --fs-contact: 9pt;
+  --fs-intro: 10.8pt;
+  --fs-sec: 9.8pt;
+  --fs-title: 12.2pt;
+  --fs-date: 9pt;
+  --fs-meta: 9.9pt;
+  --fs-body: 10.6pt;
+  --fs-value: 10.4pt;
+  --fs-brief: 10.4pt;
+  --fs-skill: 10.4pt;
+  --fs-chip: 8pt;
+  --fs-foot: 7.6pt;
+}
+
+body.resume-full .block { margin-top: 3.4mm; }
+body.resume-full .bullets li { line-height: 1.5; margin-bottom: .5mm; }
+body.resume-full .brief li { line-height: 1.5; margin-bottom: 1.4mm; }
+body.resume-full .value { line-height: 1.46; padding: 1.2mm 2.2mm; margin-top: 1.2mm; }
+body.resume-full .entry__meta { line-height: 1.5; margin-bottom: 1mm; }
+body.resume-full .sec { margin-bottom: 1.6mm; padding: 1.05mm 2mm .98mm; }
+body.resume-full .foot { margin-top: 2.4mm; }
+
+/* 第二页留白摊到小节之间，避免底部一大块空 */
+body.resume-full .paper--2 .block { margin-top: 8.5mm; }
+body.resume-full .paper--2 .brief li { margin-bottom: 3.6mm; }
+body.resume-full .paper--2 .bullets li { margin-bottom: 2.1mm; }
+body.resume-full .paper--2 .foot {
+  margin-top: 8mm;
+}
+
+@media print {
+  body.resume-full .paper {
+    height: 297mm;
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  body.resume-full .paper--2 {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
