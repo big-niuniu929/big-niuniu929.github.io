@@ -73,6 +73,32 @@ const BODIES = {
   venus: {
     label: '金星', base: TEXP, radius: 0.97, spin: 0.6,
     map: 'venus.jpg', atmosphere: 0xD8B06A, atmosphereScale: 1.02, atmosphereStrength: 1.15, tilt: 0.06
+  },
+
+  /* ---- 太阳系之外：贴图由 tools/make_planets.py 程序化生成 ----
+     人类对系外行星只有光谱和零星光点，没有真正的等距圆柱贴图；
+     这批是"如果它长这样"的想象图，本体属于我们自己画的，
+     不涉及第三方版权，也不需要署名（区别于上面的 NASA / SSS 贴图）。 */
+  ice_world: {
+    label: '冰封世界', base: TEXP, radius: 0.96, spin: 0.8,
+    map: 'ice_world.jpg', atmosphere: 0x9FC6E6, atmosphereScale: 1.02, tilt: 0.24
+  },
+  verdant_world: {
+    label: '翠海世界', base: TEXP, radius: 0.99, spin: 1.05,
+    map: 'verdant_world.jpg', atmosphere: 0x4FD6C4, atmosphereScale: 1.018, tilt: 0.16
+  },
+  ember_world: {
+    label: '熔核世界', base: TEXP, radius: 0.97, spin: 0.9,
+    map: 'ember_world.jpg', night: 'ember-glow.jpg', emissive: 0xFF7A28, glowMode: 'all',
+    atmosphere: 0xFF8A4A, atmosphereScale: 1.016, atmosphereStrength: 0.9, tilt: 0.12
+  },
+  violet_giant: {
+    label: '紫霭巨星', base: TEXP, radius: 1.02, spin: 1.45,
+    map: 'violet_giant.jpg', atmosphere: 0xB08CE0, atmosphereScale: 1.014, tilt: 0.08
+  },
+  ochre_world: {
+    label: '赭岩世界', base: TEXP, radius: 0.95, spin: 0.7,
+    map: 'ochre_world.jpg', atmosphere: 0xC89A62, atmosphereScale: 1.012, atmosphereStrength: 0.7, tilt: 0.3
   }
 };
 
@@ -94,13 +120,13 @@ const PAGES = {
     key: 'jupiter', path: [[1.08, 0.12], [0.92, 0.04], [0.52, -0.16]], scale: [2.00, 2.95]
   },
   'work/jianhe.html': {
-    key: 'mercury', path: [[1.10, 0.46], [1.16, -0.06], [0.74, -0.44]], scale: [1.20, 2.05]
+    key: 'ice_world', path: [[1.10, 0.46], [1.16, -0.06], [0.74, -0.44]], scale: [1.20, 2.05]
   },
   'work/pdd-store.html': {
-    key: 'neptune', path: [[1.02, -0.70], [1.02, -0.14], [0.64, 0.46]], scale: [1.40, 2.45]
+    key: 'verdant_world', path: [[1.02, -0.70], [1.02, -0.14], [0.64, 0.46]], scale: [1.40, 2.45]
   },
   'work/gym-bd.html': {
-    key: 'venus', path: [[1.14, -0.32], [0.94, 0.08], [0.50, 0.32]], scale: [1.45, 2.35]
+    key: 'ember_world', path: [[1.26, -0.34], [1.08, 0.10], [0.70, 0.34]], scale: [1.35, 2.05]
   },
   'method.html': {
     key: 'saturn', path: [[1.24, 0.52], [1.10, 0.02], [0.76, -0.50]], scale: [1.55, 2.45]
@@ -246,20 +272,24 @@ export function mount(root, fallbackEl, options = {}) {
 
   /* 地球夜景：只在有夜间贴图时注入 */
   if (spec.night) {
+    const glowAll = spec.glowMode === 'all';
+    const maskLines = glowAll
+      ? 'float sunDot = dot(normalize(vNormal), normalize(uSunView));\n' +
+        'float glowMask = 0.30 + 0.62 * smoothstep(-0.92, 0.72, sunDot);\n'
+      : 'float sunDot = dot(normalize(vNormal), normalize(uSunView));\n' +
+        'float nightMask = 1.0 - smoothstep(-0.34, 0.12, sunDot);\n' +
+        'float glowMask = nightMask * 2.6;\n';
     material.onBeforeCompile = (shader) => {
       shader.uniforms.uSunView = uSunView;
       shader.fragmentShader = 'uniform vec3 uSunView;\n' + shader.fragmentShader
         .replace(
           '#include <emissivemap_fragment>',
-          '#include <emissivemap_fragment>\n' +
-          'float sunDot = dot(normalize(vNormal), normalize(uSunView));\n' +
-          'float nightMask = 1.0 - smoothstep(-0.34, 0.12, sunDot);\n' +
-          'totalEmissiveRadiance *= nightMask * 2.6;'
+          '#include <emissivemap_fragment>\n' + maskLines + 'totalEmissiveRadiance *= glowMask;'
         )
         .replace(
           '#include <dithering_fragment>',
           '#include <dithering_fragment>\n' +
-          'gl_FragColor.rgb += vec3(0.020, 0.034, 0.058) * nightMask;'
+          (glowAll ? '' : 'gl_FragColor.rgb += vec3(0.020, 0.034, 0.058) * nightMask;')
         );
     };
   }
@@ -301,8 +331,8 @@ export function mount(root, fallbackEl, options = {}) {
     if (specularMap) { material.specularMap = specularMap; }
     if (night) {
       material.emissiveMap = night;
-      material.emissive = new THREE.Color(0xFFCC88);
-      material.emissiveIntensity = 1.0;
+      material.emissive = new THREE.Color(spec.emissive || 0xFFCC88);
+      material.emissiveIntensity = spec.glowMode === 'all' ? 0.95 : 1.0;
     }
     material.color.set(0xffffff);
     material.opacity = 1;

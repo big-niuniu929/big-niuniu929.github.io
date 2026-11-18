@@ -44,3 +44,8 @@
   （`saturn-ring.png` 已按列平均成 1D 条带，方便沿半径采样）
 - 来源：Solar System Scope，<https://www.solarsystemscope.com/textures/>
 - 许可：CC BY 4.0，署名见页脚与本站「关于」页
+
+- **虚构世界贴图**（ice_world / verdant_world / ember_world / violet_giant / ochre_world）：
+  由本仓库的 `tools/make_planets.py` 程序化生成（三维周期噪声 + 调色板 + 山脊噪声裂缝），
+  不含任何第三方素材，可自由使用，无需署名。真实系外行星没有等距圆柱贴图可下载，
+  这几张是"如果它长这样"的想象图，页面上也从未把它们说成真实天体。
