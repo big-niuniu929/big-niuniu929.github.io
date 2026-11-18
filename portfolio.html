@@ -486,14 +486,80 @@
           <p class="about-award__title">2026 年 1024 CVTE 编程马拉松 · 永不宕机奖</p>
           <p class="about-award__desc">工会与 CTO 办公室联合主办，全公司 75 支队伍参赛、12 支进决赛。我以「重复留给 AI」单人成队，作品《价格巡检程序》<b>排第 16</b>（距大奖区差 4 名），获「永不宕机奖」——按参赛队伍 30% 评定，本届 21 支。我是全场唯一的实习生——参赛群里没有一个是在校生。同一届我还以另一支 2 人队提交了 AI 全量客服质检系统。</p>
         </div>
+      </div>
     </section>
+
+    <!-- 9. 代码仓库 -->
+    <section class="section section--repos" id="repos" aria-labelledby="repos-title">
+      <div class="wrap">
+        <div class="sec-head sec-head--dark">
+          <p class="sec-label"><span class="sec-label__no">04 /</span>Code</p>
+          <h2 class="sec-title" id="repos-title">代码都在这里，连同它走过的弯路。</h2>
+          <p class="sec-note">六个仓库，每个都打 tag：从第一版到最后交出去的那版，中间改坏了又改回来的提交都留着。业务数据已脱敏——只留结构与逻辑，真实客户、型号、价格、密钥都不入库。</p>
+        </div>
+
+        <ul class="repos">
+          <li class="repos__item">
+            <a class="repos__link" href="https://github.com/big-niuNiu929/price-patrol" target="_blank" rel="noopener">
+              <span class="repos__name">price-patrol</span>
+              <span class="repos__go" aria-hidden="true">↗</span>
+              <span class="repos__desc">价格巡检 / 市占率 / 竞品监控：三块业务共用同一套取价逻辑，也是唯一每天有人在用的那个。</span>
+              <span class="repos__tags"><span class="repos__tag">v0.1-patrol</span><span class="repos__tag">v0.2-dual</span><span class="repos__tag">v0.3-matrix</span><span class="repos__tag">v0.4-share</span><span class="repos__tag">v1.1.5-3in1</span></span>
+            </a>
+          </li>
+          <li class="repos__item">
+            <a class="repos__link" href="https://github.com/big-niuNiu929/cs-quality-audit" target="_blank" rel="noopener">
+              <span class="repos__name">cs-quality-audit</span>
+              <span class="repos__go" aria-hidden="true">↗</span>
+              <span class="repos__desc">把抽查 2%~5% 的会话变成全量质检：业务规则先筛一遍，AI 再判语气与话术，最后由人复核。</span>
+              <span class="repos__tags"><span class="repos__tag">v4.0-legacy</span><span class="repos__tag">v5.2.0</span></span>
+            </a>
+          </li>
+          <li class="repos__item">
+            <a class="repos__link" href="https://github.com/big-niuNiu929/jianhe" target="_blank" rel="noopener">
+              <span class="repos__name">jianhe</span>
+              <span class="repos__go" aria-hidden="true">↗</span>
+              <span class="repos__desc">落笔 → OfferFit：不是把简历写漂亮，是让每一句都经得起追问。判断权在规则里，大模型只负责改写。</span>
+              <span class="repos__tags"><span class="repos__tag">v1.3-luobi</span><span class="repos__tag">v0.2-offerfit</span></span>
+            </a>
+          </li>
+          <li class="repos__item">
+            <a class="repos__link" href="https://github.com/big-niuNiu929/weiguang" target="_blank" rel="noopener">
+              <span class="repos__name">weiguang</span>
+              <span class="repos__go" aria-hidden="true">↗</span>
+              <span class="repos__desc">民事文书模板库：9 类文书骨架 + 15 类案由要素表 + 五阶流程 SOP。放结构不放范文，真实案件材料一律不入库。</span>
+              <span class="repos__tags"><span class="repos__tag">v1.0-templates</span><span class="repos__tag">v1.1-templates</span></span>
+            </a>
+          </li>
+          <li class="repos__item">
+            <a class="repos__link" href="https://github.com/big-niuNiu929/pdd-store" target="_blank" rel="noopener">
+              <span class="repos__name">pdd-store</span>
+              <span class="repos__go" aria-hidden="true">↗</span>
+              <span class="repos__desc">拼多多百货店铺 0 → 1 的失败复盘：四维亏损诊断模型，每维只回答一个问题——重来一次动哪里。</span>
+              <span class="repos__tags"><span class="repos__tag">v1.0</span></span>
+            </a>
+          </li>
+          <li class="repos__item">
+            <a class="repos__link" href="https://github.com/big-niuNiu929/gym-card-bd" target="_blank" rel="noopener">
+              <span class="repos__name">gym-card-bd</span>
+              <span class="repos__go" aria-hidden="true">↗</span>
+              <span class="repos__desc">校园健身卡分销：怎么谈下独家、怎么分层报价、怎么把私域咨询转成 22 单，以及卡出问题时谁兜底。</span>
+              <span class="repos__tags"><span class="repos__tag">v1.0</span></span>
+            </a>
+          </li>
+        </ul>
+
+        <p class="repos__foot">想看某一段是怎么改出来的，进仓库按 tag 切过去——每次提交只做一件事，commit message 里写了当时在修什么。<a href="https://github.com/big-niuNiu929" target="_blank" rel="noopener">全部仓库 ↗</a></p>
+      </div>
+    </section>
+
   </main>
 
   <!-- 9. 页脚 -->
   <footer class="footer" id="contact">
     <div class="wrap footer__inner">
       <div class="footer__head">
-        <p class="footer__kicker">04 / Contact</p>
+        <p class="footer__kicker">05 / Contact</p>
         <h2 class="footer__title">有事找我，<br>直接说。</h2>
 
         <div class="footer__contacts">
