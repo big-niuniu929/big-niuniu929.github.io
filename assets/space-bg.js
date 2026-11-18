@@ -80,6 +80,8 @@
     /* 星球在左侧的页面：遮罩镜像，否则左半屏会被涂没 */
     '.space-bg.is-left .space-bg__planets{-webkit-mask-image:linear-gradient(270deg,transparent 0%,rgba(0,0,0,.35) 26%,#000 44%),radial-gradient(126% 126% at 24% 46%,#000 58%,rgba(0,0,0,.7) 78%,transparent 97%);',
     '-webkit-mask-composite:source-in;mask-image:linear-gradient(270deg,transparent 0%,rgba(0,0,0,.35) 26%,#000 44%),radial-gradient(126% 126% at 24% 46%,#000 58%,rgba(0,0,0,.7) 78%,transparent 97%);mask-composite:intersect}',
+    /* 星球在左侧：左外缘让出 14%，星球的亮边才看得见，正文区仍然压暗 */
+    '.space-bg.is-left .space-bg__scrim{background:linear-gradient(90deg,rgba(5,8,14,.34) 0%,rgba(5,8,14,.68) 13%,rgba(5,8,14,.9) 32%,rgba(5,8,14,.93) 58%,rgba(5,8,14,.74) 80%,rgba(5,8,14,.22) 94%,rgba(5,8,14,0) 100%)}',
     '.space-bg.is-left .space-bg__glow{background:radial-gradient(48% 48% at 26% 40%,rgba(150,188,240,.16),rgba(90,132,196,.06) 52%,transparent 74%)}',
     '.space-bg__planets.is-ready{opacity:.92}',
     '@media (max-width:1200px){.space-bg__planets.is-ready{opacity:.78}}',
