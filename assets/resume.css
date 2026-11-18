@@ -1117,12 +1117,162 @@ body.resume-full .paper--2 .foot {
     height: 297mm;
     margin: 0;
     box-shadow: none;
-    page-break-after: always;
-    break-after: page;
-  }
-
-  body.resume-full .paper--2 {
     page-break-after: auto;
     break-after: auto;
+  }
+}
+
+/* ==========================================================================
+   ONE SHEET · SINGLE COLUMN
+   2026-11-18 用户要求：不要两页，压进一张 A4；案例索引删掉；不重要的内容
+   字号缩小、允许多级字号；小标签保留。
+   → 仍是单栏（沿用上一版「不要左右两栏」的要求），靠字号/行距/块距收高度。
+   --k 是整页字号倍率，调它即可整体缩放（正文基准 8.5pt×k）。
+   ========================================================================== */
+body.resume-full {
+  --k: 1;
+  --pad-x: 11mm;
+  --pad-t: 5.5mm;
+  --pad-b: 4.5mm;
+
+  --fs-name: calc(22pt * var(--k));
+  --fs-role: calc(8.6pt * var(--k));
+  --fs-contact: calc(8pt * var(--k));
+  --fs-intro: calc(8.7pt * var(--k));
+  --fs-sec: calc(8.6pt * var(--k));
+  --fs-title: calc(9.9pt * var(--k));
+  --fs-date: calc(8.1pt * var(--k));
+  --fs-meta: calc(8.4pt * var(--k));
+  --fs-body: calc(8.5pt * var(--k));
+  --fs-value: calc(8.2pt * var(--k));
+  --fs-brief: calc(8.3pt * var(--k));
+  --fs-skill: calc(8.3pt * var(--k));
+  --fs-chip: calc(7.2pt * var(--k));
+  --fs-foot: calc(6.9pt * var(--k));
+}
+
+body.resume-full .paper {
+  height: 297mm;
+  min-height: 297mm;
+  overflow: hidden;
+  padding: 5.5mm 11mm 4.5mm;
+}
+
+body.resume-full .masthead {
+  margin-bottom: 2mm;
+  padding-bottom: 2.2mm;
+}
+
+body.resume-full .masthead__photo {
+  width: 20mm;
+  height: 20mm;
+}
+
+body.resume-full .masthead__role { margin-top: .9mm; line-height: 1.35; }
+body.resume-full .masthead__contact { margin-top: 1mm; line-height: 1.36; }
+
+body.resume-full .intro {
+  margin: 1.7mm 0 1.5mm;
+  padding: 1.6mm 3mm;
+}
+
+body.resume-full .intro p { line-height: 1.36; }
+
+body.resume-full .block { margin-top: 1.3mm; }
+
+body.resume-full .sec {
+  margin: 0 0 .8mm;
+  padding: .7mm 1.8mm .68mm;
+}
+
+body.resume-full .sec__label { line-height: 1.05; }
+
+body.resume-full .entry { margin-bottom: 0; }
+
+body.resume-full .entry__head { gap: 0 3mm; }
+
+body.resume-full .entry__title { line-height: 1.22; }
+
+body.resume-full .entry__meta {
+  margin-top: .35mm;
+  margin-bottom: .4mm;
+  line-height: 1.36;
+}
+
+body.resume-full .bullets {
+  margin-top: .45mm;
+  line-height: 1.36;
+}
+
+body.resume-full .bullets li {
+  line-height: 1.36;
+  margin-bottom: .12mm;
+  padding-left: 3mm;
+}
+
+body.resume-full .bullets li::before { font-size: 6.6pt; line-height: 1.61; }
+
+body.resume-full .brief li {
+  line-height: 1.36;
+  margin-bottom: .5mm;
+  padding-left: 3mm;
+}
+
+body.resume-full .brief li::before { font-size: 6.6pt; line-height: 1.67; }
+
+body.resume-full .value {
+  margin-top: .6mm;
+  padding: .45mm 2.2mm;
+  line-height: 1.4;
+}
+
+body.resume-full .skills { line-height: 1.36; }
+
+body.resume-full .skills__row {
+  padding: 0;
+  column-gap: 2.4mm;
+}
+
+body.resume-full .skills dd { line-height: 1.36; }
+body.resume-full .skills dt { line-height: 1.36; }
+
+body.resume-full .chips {
+  margin-top: .4mm;
+  gap: .6mm 1.1mm;
+}
+
+body.resume-full .chips li {
+  padding: .05mm 1.5mm .18mm;
+  line-height: 1.42;
+}
+
+body.resume-full .tag {
+  margin: 0 .16em 0 0;
+  padding: .03em .42em .1em;
+  font-size: .82em;
+  line-height: 1.3;
+}
+
+body.resume-full .foot {
+  margin-top: 1.2mm;
+  padding-top: .9mm;
+}
+
+body.resume-full .foot p { line-height: 1.35; }
+
+body.resume-full .brief--compact li { font-size: calc(8.1pt * var(--k)); }
+
+/* 打印：让它自然流，不要用固定高度把溢出内容静默裁掉；底部留出纸边距 */
+@media print {
+  body.resume-full .paper {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding-bottom: var(--pad-b);
+  }
+
+  body.resume-full .paper .block,
+  body.resume-full .paper .entry {
+    break-inside: auto;
   }
 }
