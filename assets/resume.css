@@ -911,3 +911,152 @@ a { color: inherit; text-decoration: none; }
   .idx > div,
   .skills__row { break-inside: avoid; }
 }
+
+/* ---------------------------------------------------------------
+   ONE-PAGE · TWO COLUMN（2026-11-18）
+   要求：内容一条不删，压进一张正常 A4。
+   做法：
+   - 正文分两栏，左栏放创业 / 实习 / 产品三个「长故事」，
+     右栏放商业尝试 / 能力 / 工具 / 案例索引 / 教育这些「短条目」；
+   - 栏目条在栏内不再出血（负边距会戳出栏外），改为栏内满宽；
+   - 字号沿用原版 token，只把行距与块间距收一档。
+   --------------------------------------------------------------- */
+.resume-full {
+  --fs-name: 24pt;
+  --fs-role: 8.4pt;
+  --fs-contact: 7.8pt;
+  --fs-intro: 8.5pt;
+  --fs-sec: 8.6pt;
+  --fs-title: 9.1pt;
+  --fs-date: 7.7pt;
+  --fs-meta: 7.8pt;
+  --fs-body: 8.1pt;
+  --fs-value: 7.9pt;
+  --fs-brief: 7.9pt;
+  --fs-skill: 8pt;
+  --fs-chip: 7pt;
+  --fs-foot: 6.9pt;
+}
+
+.resume-full .paper {
+  height: auto;
+  min-height: 297mm;
+  overflow: visible;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.26fr) minmax(0, 1fr);
+  column-gap: 5.6mm;
+  align-items: stretch;
+}
+
+.col { min-width: 0; }
+
+/* 栏内栏目条：不再出血，只在本栏内铺满 */
+.cols .sec {
+  margin: 0 0 1.5mm;
+  padding: 1.05mm 2.2mm 1mm;
+}
+
+.cols .block { margin-top: 3.1mm; }
+.cols .col > .block:first-child { margin-top: 0; }
+.cols .sec__label { font-size: var(--fs-sec); }
+
+.cols .entry { margin: 0; }
+.cols .entry + .entry { margin-top: 2.4mm; }
+.cols .entry__title { font-size: var(--fs-title); }
+.cols .entry__meta { line-height: 1.52; margin-bottom: 1mm; }
+.cols .entry__head { margin-bottom: .8mm; }
+
+.cols .bullets { margin: 0; }
+.cols .bullets li { line-height: 1.46; margin-bottom: .35mm; }
+.cols .brief li { line-height: 1.46; margin-bottom: .8mm; }
+.cols .value { margin-top: 1.1mm; padding: 1.2mm 2.2mm; line-height: 1.42; }
+
+/* 右栏：索引表改成两行式（窄栏放不下 62mm 的名字列） */
+.col--side .idx > div {
+  grid-template-columns: 1fr;
+  row-gap: .15mm;
+  padding: .5mm 0;
+}
+.col--side .idx dt { font-size: .96em; }
+.col--side .idx dd { color: #46586c; }
+.col--side .skills { font-size: var(--fs-skill); }
+.col--side .skills__row { grid-template-columns: 18.5mm minmax(0, 1fr); column-gap: 1.6mm; }
+.col--side .skills dt { white-space: nowrap; }
+.col--side .chips { gap: 1.2mm; margin-top: 1.4mm; }
+
+.masthead { padding-bottom: 3.2mm; }
+.intro { margin: 3mm 0 1.8mm; padding: 2.4mm 3.4mm; }
+.intro p { line-height: 1.52; }
+.foot { margin-top: 2.6mm; }
+
+/* 标签更紧凑一点，一页里出现十几次也不至于抢戏 */
+.tag {
+  margin: 0 .22em 0 0;
+  padding: .02em .42em .06em;
+  font-size: .84em;
+}
+
+@media print {
+  .resume-full .paper { min-height: 0; }
+  .col { break-inside: avoid; }
+}
+
+/* 一页校准（实测 1365px → 目标 ≤1122px）：字号与行距各收一档 */
+.resume-full {
+  --fs-name: 22.5pt;
+  --fs-role: 8pt;
+  --fs-contact: 7.4pt;
+  --fs-intro: 8pt;
+  --fs-sec: 8.1pt;
+  --fs-title: 8.5pt;
+  --fs-date: 7.2pt;
+  --fs-meta: 7.3pt;
+  --fs-body: 7.5pt;
+  --fs-value: 7.4pt;
+  --fs-brief: 7.35pt;
+  --fs-skill: 7.5pt;
+  --fs-chip: 6.7pt;
+  --fs-foot: 6.6pt;
+}
+
+.cols .sec { margin-bottom: 1.2mm; padding: .95mm 2mm .9mm; }
+.cols .block { margin-top: 2.6mm; }
+.cols .entry + .entry { margin-top: 2mm; }
+.cols .bullets li { line-height: 1.4; margin-bottom: .3mm; }
+.cols .brief li { line-height: 1.4; margin-bottom: .7mm; }
+.cols .value { line-height: 1.38; padding: 1mm 2mm; margin-top: .9mm; }
+.cols .entry__meta { line-height: 1.46; margin-bottom: .8mm; }
+.masthead { padding-bottom: 2.6mm; }
+.intro { margin: 2.4mm 0 1.4mm; padding: 2mm 3mm; }
+.intro p { line-height: 1.46; }
+.foot { margin-top: 2mm; }
+
+/* 右栏贴底：右栏比左栏矮，把最后一块（教育）压到栏底，
+   避免右下角空出一大块，两栏看起来才像一张排满的纸 */
+.cols .col--side { display: flex; flex-direction: column; justify-content: space-between; }
+.cols .col--side > .block { margin-top: 0; }
+.cols .col--side > .block + .block { margin-top: 2mm; }
+
+/* 一页校准 v2：两栏改版后多出 54px，这里把纵向节奏再收一档 */
+.masthead { padding-bottom: 2mm; }
+.intro { margin: 2mm 0 1.2mm; padding: 1.7mm 3mm; }
+.cols .block { margin-top: 2mm; }
+.cols .entry + .entry { margin-top: 1.6mm; }
+.cols .bullets li { line-height: 1.36; margin-bottom: .2mm; }
+.cols .brief li { line-height: 1.36; margin-bottom: .5mm; }
+.cols .value { padding: .8mm 2mm; margin-top: .8mm; }
+.cols .sec { margin-bottom: 1mm; }
+.foot { margin-top: 1.4mm; }
+.resume-full {
+  --fs-body: 7.4pt;
+  --fs-brief: 7.25pt;
+  --fs-value: 7.3pt;
+}
+.cols .brief li { margin-bottom: .38mm; }
+.foot { margin-top: 1mm; }
+.cols .block { margin-top: 1.9mm; }
+.masthead { padding-bottom: 1.8mm; }
+

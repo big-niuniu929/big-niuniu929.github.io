@@ -39,15 +39,15 @@
     '.space-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:transparent}',
     '.space-bg__stars{position:absolute;inset:0;display:block}',
     /* 星云：左下角一团，只做气氛 */
-    '.space-bg__nebula{position:absolute;left:-18%;bottom:-26%;width:min(108vw,1500px);',
-    'aspect-ratio:1.73;background-size:cover;background-position:center;opacity:.34;',
+    '.space-bg__nebula{position:absolute;left:-24%;bottom:-14%;width:min(116vw,1600px);',
+    'aspect-ratio:1.73;background-size:cover;background-position:center;opacity:.46;',
     'mix-blend-mode:screen;filter:saturate(.9);',
     '-webkit-mask-image:radial-gradient(60% 60% at 45% 55%,#000 30%,transparent 78%);',
     'mask-image:radial-gradient(60% 60% at 45% 55%,#000 30%,transparent 78%);',
     'animation:spaceNebulaDrift 120s ease-in-out infinite}',
     /* 银河带：顶部横贯，极淡 */
     '.space-bg__milky{position:absolute;left:-12%;top:-8%;width:min(124vw,1800px);',
-    'aspect-ratio:1.66;background-size:cover;background-position:center;opacity:.34;',
+    'aspect-ratio:1.66;background-size:cover;background-position:center;opacity:.42;',
     'mix-blend-mode:screen;',
     '-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 26%,#000 62%,transparent 100%);',
     'mask-image:linear-gradient(180deg,transparent 0%,#000 26%,#000 62%,transparent 100%)}',
@@ -65,9 +65,22 @@
     '-webkit-mask-composite:source-in;',
     'mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 26%,#000 44%),radial-gradient(126% 126% at 76% 46%,#000 58%,rgba(0,0,0,.7) 78%,transparent 97%);',
     'mask-composite:intersect}',
+    /* 左侧底色：把"纯黑"换成深蓝，星云与星点才有可依的底 */
+    '.space-bg__wash{position:absolute;inset:0;z-index:0;pointer-events:none;background:',
+    'radial-gradient(54% 48% at 15% 32%,rgba(62,102,166,.30),transparent 74%),',
+    'radial-gradient(42% 40% at 6% 78%,rgba(96,74,152,.20),transparent 76%),',
+    'radial-gradient(46% 42% at 34% 62%,rgba(40,72,124,.16),transparent 78%),',
+    'linear-gradient(90deg,rgba(16,27,48,.58) 0%,rgba(13,23,41,.36) 46%,rgba(9,16,30,.10) 74%,transparent 100%)}',
+    /* 星球溢光：让亮面有向左侧渗过去的一点蓝，别把左右切成两半 */
+    '.space-bg__glow{position:absolute;inset:0;z-index:1;pointer-events:none;background:',
+    'radial-gradient(48% 48% at 72% 40%,rgba(150,188,240,.16),rgba(90,132,196,.06) 52%,transparent 74%)}',
     '.space-bg__scrim{position:absolute;inset:0;z-index:2;pointer-events:none;',
-    'background:linear-gradient(90deg,rgba(5,8,14,.95) 0%,rgba(5,8,14,.94) 42%,rgba(5,8,14,.84) 60%,rgba(5,8,14,.46) 76%,rgba(5,8,14,.1) 89%,rgba(5,8,14,0) 100%)}',
+    'background:linear-gradient(90deg,rgba(5,8,14,.80) 0%,rgba(5,8,14,.76) 38%,rgba(5,8,14,.60) 58%,rgba(5,8,14,.30) 76%,rgba(5,8,14,.08) 89%,rgba(5,8,14,0) 100%)}',
     '.space-bg__planets{z-index:1}',
+    /* 星球在左侧的页面：遮罩镜像，否则左半屏会被涂没 */
+    '.space-bg.is-left .space-bg__planets{-webkit-mask-image:linear-gradient(270deg,transparent 0%,rgba(0,0,0,.35) 26%,#000 44%),radial-gradient(126% 126% at 24% 46%,#000 58%,rgba(0,0,0,.7) 78%,transparent 97%);',
+    '-webkit-mask-composite:source-in;mask-image:linear-gradient(270deg,transparent 0%,rgba(0,0,0,.35) 26%,#000 44%),radial-gradient(126% 126% at 24% 46%,#000 58%,rgba(0,0,0,.7) 78%,transparent 97%);mask-composite:intersect}',
+    '.space-bg.is-left .space-bg__glow{background:radial-gradient(48% 48% at 26% 40%,rgba(150,188,240,.16),rgba(90,132,196,.06) 52%,transparent 74%)}',
     '.space-bg__planets.is-ready{opacity:.92}',
     '@media (max-width:1200px){.space-bg__planets.is-ready{opacity:.78}}',
     '.space-bg.is-3d .space-bg__earth{opacity:0;transition:opacity .7s ease}',
@@ -84,6 +97,10 @@
   root.className = 'space-bg';
   root.setAttribute('aria-hidden', 'true');
 
+  var wash = document.createElement('div');
+  wash.className = 'space-bg__wash';
+  root.appendChild(wash);
+
   var canvas = document.createElement('canvas');
   canvas.className = 'space-bg__stars';
   root.appendChild(canvas);
@@ -97,6 +114,10 @@
   nebula.className = 'space-bg__nebula';
   nebula.style.backgroundImage = 'url("' + base + 'assets/img/nebula.webp")';
   root.appendChild(nebula);
+
+  var glow = document.createElement('div');
+  glow.className = 'space-bg__glow';
+  root.appendChild(glow);
 
   var earth = document.createElement('div');
   earth.className = 'space-bg__earth';
@@ -144,15 +165,15 @@
 
   function build() {
     /* 密度随视口面积变化：大屏不至于空，小屏不至于糊 */
-    var count = Math.round((w * h) / 5200);
-    count = Math.max(140, Math.min(count, 620));
+    var count = Math.round((w * h) / 3400);
+    count = Math.max(220, Math.min(count, 900));
     stars.length = 0;
     for (var i = 0; i < count; i++) {
       stars.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: Math.random() * 1.05 + 0.25,
-        a: Math.random() * 0.55 + 0.25,
+        r: Math.random() * 1.15 + 0.34,
+        a: Math.random() * 0.5 + 0.42,
         phase: Math.random() * Math.PI * 2,
         speed: Math.random() * 0.5 + 0.25,
         drift: Math.random() * 0.5 + 0.2

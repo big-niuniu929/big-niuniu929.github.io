@@ -17,7 +17,7 @@
     <nav class="tools" aria-label="页面工具">
       <a href="portfolio.html">← 返回案例</a>
       <span class="tools__sep" aria-hidden="true">｜</span>
-      <span class="tools__ver"><b>A4 · 两页</b></span>
+      <span class="tools__ver"><b>A4 · 一页</b></span>
       <span class="tools__sep" aria-hidden="true">｜</span>
       <button type="button" onclick="window.print()">打印 / 存为 PDF</button>
       <span class="tools__sep" aria-hidden="true">｜</span>
@@ -47,6 +47,9 @@
         <p><b class="intro__label">个人简介</b>自动化专业在读，但我的主线不是课程：至今独立完成 <span class="num">6</span> 个真实项目，其中 <span class="num">2</span> 个是实习期在业务部门做的内部系统。我在做的是 <b>OPC（超级个体）</b>：产品设计、AI 工作流、内容运营、交付，一个人跑完。擅长把「一直以来都是这么干」的重复流程重做成能自动跑的东西——先看清旧流程，再问它为什么必须是这样；真正花力气的地方是定义规则、口径与验收标准。</p>
       </section>
 
+      <div class="cols">
+        <div class="col col--main">
+
       <!-- ================= 创业项目 ================= -->
       <section class="block" aria-labelledby="sec-venture">
         <h2 class="sec" id="sec-venture"><span class="sec__label">创业项目</span><span class="sec__rule" aria-hidden="true"></span></h2>
@@ -56,7 +59,7 @@
             <h3 class="entry__title">微光 · 民事文书辅助</h3>
             <span class="entry__date">2025.07 – 至今</span>
           </div>
-          <p class="entry__meta"><b>独立发起 · 独立运营 1 年+</b><span class="sep">｜</span>每周 15–20h <span class="tag">OPC 项目</span>产品设计 · AI 工作流 · 内容运营 · 全周期交付</p>
+          <p class="entry__meta"><b>独立发起 · 独立运营 1 年+</b><span class="sep">｜</span>每周 15–20h <span class="tag">独立创业</span><span class="tag">OPC 项目</span><span class="tag">AI 工作流</span>产品设计 · 内容运营 · 全周期交付</p>
           <ul class="bullets">
             <li><b>AI 工具体系自研</b>：<span class="num">15</span> 类民事纠纷模板 + 分层提示词工作流，搭「问诊 → 归集 → AI 初稿 → 人工逐段校对 → 提交指引」五阶流程，配交叉核验防幻觉。</li>
             <li><b>提效量化</b>：单份文书 <span class="num">40–60</span> 分钟压到 <span class="num">15–20</span> 分钟，单人日产 <span class="num">2</span> → <span class="num">4–6</span> 份，累计交付 <span class="num">98</span> 份。</li>
@@ -76,7 +79,7 @@
             <h3 class="entry__title">广州视源电子科技股份有限公司（CVTE）</h3>
             <span class="entry__date">2026.09 – 至今</span>
           </div>
-          <p class="entry__meta"><b>电商运营实习</b><span class="sep">｜</span>岗位在电商运营，产出是线上营销部门的开发工作——第一次做软件开发，交付物是系统，不是报表。</p>
+          <p class="entry__meta"><span class="tag">实习</span><span class="tag">内部系统</span><b>电商运营实习</b><span class="sep">｜</span>岗位在电商运营，产出是线上营销部门的开发工作——第一次做软件开发，交付物是系统，不是报表。</p>
           <ul class="bullets">
             <li><b>职责外的产出</b>：独立开发 <span class="num">1</span> 个平台系统 + <span class="num">3</span> 个浏览器插件，全部围绕真实重复劳动。</li>
             <li><b>价格监控平台</b>：自身巡检 + 外部竞品监控 + 市占率，三个模块共用一条取价比对链；手动抄 <span class="num">146</span> 个商品页价格要 <span class="num">3</span> 小时，改成点一次按钮 <span class="num">23 分 42 秒</span> 跑完并标红破价。</li>
@@ -94,10 +97,10 @@
 
         <article class="entry">
           <div class="entry__head">
-            <h3 class="entry__title">简核 · 落笔 —— 简历攻防</h3>
+            <h3 class="entry__title">OfferFit —— 简历攻防</h3>
             <span class="entry__date">2026.10 – 至今</span>
           </div>
-          <p class="entry__meta"><span class="tag">个人项目</span>把简历当「被攻击的靶子」：先找出会被追问的地方，再决定怎么写。产品定义、商业机制、前后端与公网部署，单人完成。</p>
+          <p class="entry__meta"><span class="tag">个人项目</span><span class="tag">商业闭环</span><span class="tag">全栈</span>把简历当「被攻击的靶子」：先找出会被追问的地方，再决定怎么写。产品定义、商业机制、前后端与公网部署，单人完成。</p>
           <ul class="bullets">
             <li><b>产品判断</b>：早期还做过「给 JD 自动出题 + 证据化打分」的姊妹形态，后来停掉——它解决的是「面试练得像不像」，真正卡住人的是「简历里这句会被追问什么」；判断方式留下来用到了简历改写。</li>
             <li><b>工程实现</b>：<span class="num">13,611</span> 非空行、<span class="num">49</span> 个用户侧接口、手写 http.server 分派；商业机制（定价/会员/额度/风控）已实现。</li>
@@ -111,15 +114,31 @@
         <h2 class="sec" id="sec-other"><span class="sec__label">商业尝试</span><span class="sec__rule" aria-hidden="true"></span></h2>
 
         <ul class="brief">
-          <li><b>拼多多日用百货店铺 0→1</b><span class="brief__meta">运营执行 · 2025.02–2025.05</span><span class="brief__sep" aria-hidden="true">｜</span><span class="num">3</span> 人合伙；<span class="num">3</span> 天研读平台规范完成合规上架、<span class="num">30+</span> SKU、零违规扣分；关停后主笔全维度复盘，输出可复用的电商亏损诊断模型。</li>
-          <li><b>校区健身卡分销</b><span class="brief__meta">独家渠道负责人 · 2025.07–2025.08</span><span class="brief__sep" aria-hidden="true">｜</span>冷对接门店拿下校园独家分销权与分层提成；口头规则整理成结构化报价表，自建私域一对一匹配，<span class="num">2–3</span> 天完成 <span class="num">80%</span> 业绩；流水 <span class="num">18,680</span> 元、<span class="num">22</span> 单。</li>
-          <li><b>平安夜礼盒校园双渠道活动</b><span class="brief__meta">联合运营负责人 · 2024.12（72h）</span><span class="brief__sep" aria-hidden="true">｜</span>「线上预售 + 商户代销」双渠道：24 小时搭好下单链路、谈下零成本铺货；订单 <span class="num">100%</span> 交付、触达 <span class="num">140+</span> 用户；沉淀成本测算模板。</li>
+          <li><b>拼多多日用百货店铺 0→1</b><span class="brief__meta">运营执行 · 2025.02–2025.05</span><span class="tag">3 人合伙</span><span class="brief__sep" aria-hidden="true">｜</span><span class="num">3</span> 人合伙；<span class="num">3</span> 天研读平台规范完成合规上架、<span class="num">30+</span> SKU、零违规扣分；关停后主笔全维度复盘，输出可复用的电商亏损诊断模型。</li>
+          <li><b>校区健身卡分销</b><span class="brief__meta">独家渠道负责人 · 2025.07–2025.08</span><span class="tag">独家渠道</span><span class="brief__sep" aria-hidden="true">｜</span>冷对接门店拿下校园独家分销权与分层提成；口头规则整理成结构化报价表，自建私域一对一匹配，<span class="num">2–3</span> 天完成 <span class="num">80%</span> 业绩；流水 <span class="num">18,680</span> 元、<span class="num">22</span> 单。</li>
+          <li><b>平安夜礼盒校园双渠道活动</b><span class="brief__meta">联合运营负责人 · 2024.12（72h）</span><span class="tag">双渠道</span><span class="brief__sep" aria-hidden="true">｜</span>「线上预售 + 商户代销」双渠道：24 小时搭好下单链路、谈下零成本铺货；订单 <span class="num">100%</span> 交付、触达 <span class="num">140+</span> 用户；沉淀成本测算模板。</li>
         </ul>
 
         <ul class="brief brief--compact">
           <li><b>初高中全科 / 物理辅导讲师</b><span class="brief__meta">2024.02–2025.04</span><span class="brief__sep" aria-hidden="true">｜</span>物理竞赛背景，定制分层教学，实现个人经济独立。</li>
         </ul>
       </section>
+
+        <!-- ================= 教育 ================= -->
+      <section class="block block--last" aria-labelledby="sec-edu">
+        <h2 class="sec" id="sec-edu"><span class="sec__label">教育</span><span class="sec__rule" aria-hidden="true"></span></h2>
+
+        <div class="edu">
+          <div class="entry__head">
+            <h3 class="edu__title">广州理工学院 · 智能制造与电气工程学院 · 自动化 <span class="tag">全日制本科</span></h3>
+            <span class="entry__date">2024.09 – 2028.06（预计毕业）</span>
+          </div>
+
+        </div>
+      </section>
+
+      </div>
+        <div class="col col--side">
 
       <!-- ================= 核心综合能力 ================= -->
       <section class="block" aria-labelledby="sec-skills">
@@ -165,25 +184,15 @@
           <div><dt>微光 · 民事文书辅助</dt><dd>创业项目 · 2025.07–至今 · <b>98 份</b>交付、<b>89 人</b>线上立案</dd></div>
           <div><dt>价格监控平台（巡检 / 竞品 / 市占率）</dt><dd>实习交付 · 2026.11 · <b>23 分 42 秒</b>跑完一轮、省 <b>约 684 小时/年</b></dd></div>
           <div><dt>Ai 全量客服质检系统</dt><dd>实习交付 · 2026.09–11 · 抽查 <b>2%~5%</b> → <b>100%</b> 全量</dd></div>
-          <div><dt>简核 · 落笔</dt><dd>产品项目 · 2026.10–至今 · <b>13,611</b> 行、<b>49</b> 接口、商业闭环已完成</dd></div>
+          <div><dt>OfferFit</dt><dd>产品项目 · 2026.10–至今 · <b>13,611</b> 行、<b>49</b> 接口、商业闭环已完成</dd></div>
           <div><dt>拼多多百货店铺 0→1</dt><dd>商业尝试 · 2025.02–05 · <b>30+ SKU</b>、零违规、输出亏损诊断模型</dd></div>
           <div><dt>校区健身卡分销</dt><dd>商业尝试 · 2025.07–08 · 流水 <b>18,680 元</b>、<b>22</b> 单、零客诉</dd></div>
         </dl>
         <p class="idx__foot">完整过程、截图与口径说明：<b>big-niuNiu929.github.io</b></p>
       </section>
 
-      <!-- ================= 教育 ================= -->
-      <section class="block block--last" aria-labelledby="sec-edu">
-        <h2 class="sec" id="sec-edu"><span class="sec__label">教育</span><span class="sec__rule" aria-hidden="true"></span></h2>
-
-        <div class="edu">
-          <div class="entry__head">
-            <h3 class="edu__title">广州理工学院 · 智能制造与电气工程学院 · 自动化（全日制本科）</h3>
-            <span class="entry__date">2024.09 – 2028.06（预计毕业）</span>
-          </div>
-
         </div>
-      </section>
+      </div>
 
       <!-- ================= 页脚 ================= -->
       <footer class="foot">

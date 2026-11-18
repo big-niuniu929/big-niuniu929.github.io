@@ -122,30 +122,16 @@ const BODIES = {
    scale：[起点, 终点]；x 控制在 0.68–1.08（右侧三分之一），
    星球最靠近时有半个身子越过画面右缘，形成"压过来"的体量感。 */
 const PAGES = {
-  'portfolio.html': {
-    key: 'earth', path: [[1.16, 0.40], [1.02, 0.06], [0.86, -0.34]], scale: [1.35, 2.55]
-  },
-  'work/weiguang.html': {
-    key: 'moon', path: [[1.12, -0.58], [1.08, -0.04], [0.80, 0.50]], scale: [1.25, 2.15]
-  },
-  'work/price-patrol.html': {
-    key: 'mars', path: [[1.12, 0.64], [0.94, 0.14], [0.58, -0.46]], scale: [1.55, 2.70]
-  },
-  'work/cs-quality.html': {
-    key: 'jupiter', path: [[1.08, 0.12], [0.92, 0.04], [0.52, -0.16]], scale: [2.00, 2.95]
-  },
-  'work/jianhe.html': {
-    key: 'ice_world', path: [[1.10, 0.46], [1.16, -0.06], [0.74, -0.44]], scale: [1.20, 2.05]
-  },
-  'work/pdd-store.html': {
-    key: 'verdant_world', path: [[1.02, -0.70], [1.02, -0.14], [0.64, 0.46]], scale: [1.40, 2.45]
-  },
-  'work/gym-bd.html': {
-    key: 'ember_world', path: [[1.26, -0.34], [1.08, 0.10], [0.70, 0.34]], scale: [1.35, 2.05]
-  },
-  'method.html': {
-    key: 'saturn', path: [[1.24, 0.52], [1.10, 0.02], [0.76, -0.50]], scale: [1.55, 2.45]
-  }
+  /* 每页一颗星。path = 三个控制点（x 以半个视口宽为单位，y 以半个视口高为单位），
+     起点在右侧出血、中段压到中右、末段继续往左下沉——不要让八页都停在同一条竖线上。 */
+  'portfolio.html':        { key: 'earth',         path: [[1.10, 0.42], [0.98, 0.04], [0.78, -0.34]], scale: [1.50, 2.75] },
+  'work/weiguang.html':    { side: 'left', key: 'moon',          path: [[-1.02, -0.58], [-1.00, -0.04], [-0.74, 0.46]], scale: [1.55, 2.55] },
+  'work/price-patrol.html':{ key: 'mars',          path: [[1.06, 0.60], [0.88, 0.12], [0.54, -0.44]], scale: [1.70, 2.90] },
+  'work/cs-quality.html':  { key: 'jupiter',       path: [[1.00, 0.10], [0.86, 0.02], [0.48, -0.16]], scale: [2.10, 3.05] },
+  'work/jianhe.html':      { side: 'left', key: 'ice_world',     path: [[-1.00, 0.46], [-1.04, -0.02], [-0.70, -0.40]], scale: [1.45, 2.35] },
+  'work/pdd-store.html':   { key: 'verdant_world', path: [[0.96, -0.66], [0.94, -0.12], [0.60, 0.46]], scale: [1.50, 2.55] },
+  'work/gym-bd.html':      { side: 'left', key: 'ember_world',   path: [[-1.10, -0.28], [-0.98, 0.14], [-0.64, 0.36]], scale: [1.60, 2.45] },
+  'method.html':           { key: 'saturn',        path: [[1.06, 0.52], [0.90, 0.02], [0.56, -0.52]], scale: [1.85, 2.90] }
 };
 
 const FALLBACK = { key: 'earth', path: [[1.08, 0.34], [0.94, 0.02], [0.72, -0.36]], scale: [1.35, 2.45] };
@@ -179,6 +165,7 @@ export function mount(root, fallbackEl, options = {}) {
 
   const page = pickPage();
   if (!page) { return null; }
+  if (page.side === 'left') { root.classList.add('is-left'); }
   const spec = BODIES[page.key];
   if (!spec) { return null; }
 
@@ -515,6 +502,10 @@ export function mount(root, fallbackEl, options = {}) {
 
   window.__orbitBg = {
     get progress() { return progress; },
+    get ndc() {
+      const v = group.position.clone().project(camera);
+      return [Number(v.x.toFixed(3)), Number(v.y.toFixed(3))];
+    },
     get mood() { return activeMood; },
     get sun() { return moodNow.toArray(); },
     get key() { return page.key; },
