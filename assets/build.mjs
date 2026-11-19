@@ -217,7 +217,7 @@ function renderCardCompact(project, index, category) {
 
   const repo = (mediaItem.repo && mediaItem.repo.url) ? mediaItem.repo.url : '';
   const codeLink = repo
-    ? `            <a class="mini-card__code" href="${esc(repo)}" target="_blank" rel="noopener">代码 <span aria-hidden="true">\u2197</span></a>`
+    ? `            <a class="mini-card__code" href="${esc(repo)}" target="_blank" rel="noopener">代码/案例 <span aria-hidden="true">\u2197</span></a>`
     : '';
 
   return [
